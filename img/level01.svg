@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<style>
+text{font-family:sans-serif}
+.big{font-size:21px;font-weight:bold;fill:#2C2417}
+.mid{font-size:17px;font-weight:bold;fill:#2C2417}
+.sm{font-size:14px;fill:#2C2417}
+.sm2{font-size:12px;font-weight:bold;fill:#2C2417}
+.blk{font-size:13px;font-weight:bold;fill:#2C2417;text-anchor:middle}
+.flow{stroke:#FF8FA3;stroke-width:3;stroke-dasharray:7 7;fill:none;animation:fl 1.6s linear infinite}
+@keyframes fl{to{stroke-dashoffset:-28}}
+.sp{fill:none;stroke:#FF8FA3;stroke-width:3;animation:sp 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.sp2{animation-delay:.6s}
+.sp3{animation-delay:1.2s}
+.sp4{animation-delay:1.8s}
+@keyframes sp{0%,100%{opacity:0;transform:scale(.4)}40%{opacity:1;transform:scale(1)}80%{opacity:0;transform:scale(1.5)}}
+.badge{animation:bd 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bd{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+</style>
+<defs>
+<g id="cat">
+<path d="M-16 14 q-20 -2 -18 -20" fill="none" stroke="#2C2417" stroke-width="3.5" stroke-linecap="round"/>
+<ellipse cx="-7" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="11" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="0" cy="12" rx="23" ry="18" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<circle cx="3" cy="-13" r="17" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="-8,-25 -12,-39 1,-31" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<polygon points="9,-29 19,-39 21,-23" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<circle cx="1" cy="-15" r="2.8" fill="#2C2417"/>
+<circle cx="12" cy="-15" r="2.8" fill="#2C2417"/>
+<polygon points="5,-8 11,-8 8,-4" fill="#FF8FA3" stroke="#2C2417" stroke-width="2" stroke-linejoin="round"/>
+<path d="M2 -2 q6 5 12 1" fill="none" stroke="#2C2417" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<path id="hat210" d="M12 0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+<path id="cmd210" d="M12 0 H88 V-9 H122 V0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+</defs>
+<rect width="640" height="360" fill="#F4EDE0"/>
+<text class="big" x="24" y="32">第1关 · 小猫的分身术</text>
+<text class="sm" x="24" y="54">「克隆自己」＝复制出一个一模一样的新小猫，原版仍然在</text>
+<rect x="24" y="74" width="330" height="230" rx="10" fill="#FFFFFF" stroke="#2C2417" stroke-width="4"/>
+<rect x="250" y="84" width="70" height="26" rx="8" fill="#FFD166" stroke="#2C2417" stroke-width="3"/>
+<text class="blk" x="285" y="101">本体 1 只</text>
+<g transform="translate(189,112) scale(0.85)"><use href="#cat" color="#FFD166"/></g>
+<g class="badge"><circle cx="189" cy="152" r="14" fill="#FF8FA3" stroke="#2C2417" stroke-width="3"/>
+<text class="sm" x="189" y="157" text-anchor="middle">+1</text></g>
+<path class="flow" d="M189 170 L100 216"/>
+<path class="flow" d="M189 170 L160 216"/>
+<path class="flow" d="M189 170 L220 216"/>
+<path class="flow" d="M189 170 L280 216"/>
+<g transform="translate(100,258) scale(0.68)"><use href="#cat" color="#FF8FA3"/></g>
+<g transform="translate(160,258) scale(0.68)"><use href="#cat" color="#FF8FA3"/></g>
+<g transform="translate(220,258) scale(0.68)"><use href="#cat" color="#FF8FA3"/></g>
+<g transform="translate(280,258) scale(0.68)"><use href="#cat" color="#FF8FA3"/></g>
+<circle class="sp" cx="100" cy="225" r="8" fill="none"/>
+<circle class="sp sp2" cx="160" cy="225" r="8" fill="none"/>
+<circle class="sp sp3" cx="220" cy="225" r="8" fill="none"/>
+<circle class="sp sp4" cx="280" cy="225" r="8" fill="none"/>
+<text class="sm2" x="100" y="300" text-anchor="middle">分身1</text>
+<text class="sm2" x="160" y="300" text-anchor="middle">分身2</text>
+<text class="sm2" x="220" y="300" text-anchor="middle">分身3</text>
+<text class="sm2" x="280" y="300" text-anchor="middle">分身4</text>
+<use href="#hat210" x="392" y="86" fill="#FFD166"/>
+<text class="blk" x="497" y="113">当绿旗被点击</text>
+<path d="M404 128 H592 Q602 128 602 138 V214 Q602 224 592 224 H404 Q394 224 394 214 V138 Q394 128 404 128 Z" fill="#FF8FA3" stroke="#2C2417" stroke-width="3.5"/>
+<rect x="412" y="150" width="168" height="66" fill="#F4EDE0"/>
+<text class="blk" x="497" y="146">重复 4 次</text>
+<path d="M420 158 Q420 154 424 154 H566 Q570 154 570 158 V188 Q570 192 566 192 H424 Q420 192 420 188 Z" fill="#FFD166" stroke="#2C2417" stroke-width="3.5"/>
+<text class="blk" x="495" y="180">克隆自己</text>
+<use href="#hat210" x="392" y="224" fill="#FFD166"/>
+<text class="blk" x="497" y="251">当作为克隆体启动时</text>
+<use href="#cmd210" x="392" y="266" fill="#4CC9F0"/>
+<text class="blk" x="497" y="293">移到 下方随机位置</text>
+<text class="mid" x="24" y="340">口诀：克隆一次多一个分身，本体一直在；分身生出来快去别处报到</text>
+</svg>

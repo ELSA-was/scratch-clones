@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<style>
+text{font-family:sans-serif}
+.big{font-size:21px;font-weight:bold;fill:#2C2417}
+.mid{font-size:17px;font-weight:bold;fill:#2C2417}
+.sm{font-size:14px;fill:#2C2417}
+.sm2{font-size:12px;font-weight:bold;fill:#2C2417}
+.blk{font-size:12.5px;font-weight:bold;fill:#2C2417;text-anchor:middle}
+.a1{animation:af 3s ease-in infinite}
+.a2{animation:af 3s ease-in infinite;animation-delay:-1s}
+.a3{animation:af 3s ease-in infinite;animation-delay:-2s}
+@keyframes af{0%{transform:translateY(0);opacity:0}8%{opacity:1}85%{opacity:1}100%{transform:translateY(108px);opacity:0}}
+.sw{animation:sw 3s ease-in-out infinite}
+@keyframes sw{0%,100%{transform:translateX(-16px)}50%{transform:translateX(16px)}}
+</style>
+<defs>
+<g id="cat">
+<path d="M-16 14 q-20 -2 -18 -20" fill="none" stroke="#2C2417" stroke-width="3.5" stroke-linecap="round"/>
+<ellipse cx="-7" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="11" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="0" cy="12" rx="23" ry="18" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<circle cx="3" cy="-13" r="17" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="-8,-25 -12,-39 1,-31" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<polygon points="9,-29 19,-39 21,-23" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<circle cx="1" cy="-15" r="2.8" fill="#2C2417"/>
+<circle cx="12" cy="-15" r="2.8" fill="#2C2417"/>
+<polygon points="5,-8 11,-8 8,-4" fill="#FF8FA3" stroke="#2C2417" stroke-width="2" stroke-linejoin="round"/>
+<path d="M2 -2 q6 5 12 1" fill="none" stroke="#2C2417" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<g id="apple">
+<ellipse cx="0" cy="3" rx="13" ry="13" fill="#FF8FA3" stroke="#2C2417" stroke-width="3"/>
+<path d="M0 -9 V-15" stroke="#2C2417" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="4" cy="-14" rx="6" ry="4" fill="#8AC926" stroke="#2C2417" stroke-width="2.5" transform="rotate(-25 4 -14)"/>
+</g>
+<path id="hat210" d="M12 0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+<path id="cmd210" d="M12 0 H88 V-9 H122 V0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+</defs>
+<rect width="640" height="360" fill="#F4EDE0"/>
+<text class="big" x="24" y="32">第6关 · 30 秒接苹果闯关</text>
+<text class="sm" x="24" y="54">倒计时 + 接满 10 个就过关：先判过关，再判时间到失败</text>
+<rect x="24" y="74" width="336" height="230" rx="10" fill="#FFFFFF" stroke="#2C2417" stroke-width="4"/>
+<rect x="40" y="90" width="112" height="28" rx="9" fill="#FFD166" stroke="#2C2417" stroke-width="3"/>
+<text class="sm2" x="96" y="109" text-anchor="middle">剩余时间 30</text>
+<rect x="164" y="90" width="86" height="28" rx="9" fill="#4CC9F0" stroke="#2C2417" stroke-width="3"/>
+<text class="sm2" x="207" y="109" text-anchor="middle">接住 7 / 10</text>
+<rect x="262" y="90" width="82" height="28" rx="9" fill="#FF8FA3" stroke="#2C2417" stroke-width="3"/>
+<text class="sm2" x="303" y="109" text-anchor="middle">计时器归零</text>
+<g transform="translate(96,140)"><g class="a1"><use href="#apple"/></g></g>
+<g transform="translate(200,140)"><g class="a2"><use href="#apple"/></g></g>
+<g transform="translate(304,140)"><g class="a3"><use href="#apple"/></g></g>
+<g transform="translate(48,48)">
+<circle r="30" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5"/>
+<path transform="rotate(22)" d="M0 0 V-21" stroke="#FF8FA3" stroke-width="4" stroke-linecap="round"/>
+<circle r="3" fill="#2C2417"/>
+</g>
+<g transform="translate(200,246) scale(0.95)"><g class="sw"><use href="#cat" color="#FFD166"/></g></g>
+<circle cx="150" cy="240" r="14" fill="#FF8FA3" stroke="#2C2417" stroke-width="3"/>
+<text class="blk" x="150" y="245" text-anchor="middle">+1</text>
+<path d="M164 240 L186 240" stroke="#2C2417" stroke-width="3" stroke-dasharray="5 4" stroke-linecap="round"/>
+<text class="sm" x="44" y="292">向左 ← 键 · 向右 → 键：接住掉下来的苹果</text>
+<use href="#hat210" x="392" y="86" fill="#FFD166"/>
+<text class="blk" x="497" y="113">当绿旗被点击</text>
+<use href="#cmd210" x="392" y="128" fill="#8AC926"/>
+<text class="blk" x="497" y="155">将 剩余时间 设为 30</text>
+<use href="#cmd210" x="392" y="172" fill="#8AC926"/>
+<text class="blk" x="497" y="199">将 接住数 设为 0</text>
+<path d="M404 214 H592 Q602 214 602 224 V302 Q602 312 592 312 H404 Q394 312 394 302 V224 Q394 214 404 214 Z" fill="#FF8FA3" stroke="#2C2417" stroke-width="3.5"/>
+<rect x="410" y="240" width="172" height="56" fill="#F4EDE0"/>
+<text class="blk" x="497" y="234">重复执行：每秒检查一次</text>
+<text class="blk" x="497" y="258">接住数 = 10 → 说 过关</text>
+<text class="blk" x="497" y="276">剩余时间 = 0 → 说 失败</text>
+<text class="blk" x="497" y="294">停！两种结果只触发一个</text>
+<text class="mid" x="24" y="348">倒计时：设初值 30 → 等 1 秒减 1；接满 10 个先判过关，时间到再判失败</text>
+</svg>

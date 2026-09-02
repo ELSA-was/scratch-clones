@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<style>
+text{font-family:sans-serif}
+.big{font-size:21px;font-weight:bold;fill:#2C2417}
+.mid{font-size:17px;font-weight:bold;fill:#2C2417}
+.sm{font-size:14px;fill:#2C2417}
+.blk{font-size:12.5px;font-weight:bold;fill:#2C2417;text-anchor:middle}
+.m1{animation:mb 3s linear infinite}
+.m2{animation:mb 2.2s linear infinite;animation-delay:-.8s}
+.m3{animation:mb 2.8s linear infinite;animation-delay:-1.6s}
+@keyframes mb{0%{transform:translateY(0);opacity:0}6%{opacity:1}90%{opacity:1}100%{transform:translateY(100px);opacity:0}}
+.sw{animation:sw2 3.4s ease-in-out infinite}
+@keyframes sw2{0%,100%{transform:translateX(-18px)}50%{transform:translateX(18px)}}
+.tw{animation:tw 3s linear infinite}
+@keyframes tw{0%,18%{opacity:0}26%,38%{opacity:1}44%,100%{opacity:0}}
+.sta{animation:st2 2.4s ease-in-out infinite}
+@keyframes st2{0%,100%{opacity:.35}50%{opacity:1}}
+.star{animation:sk 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes sk{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.2) rotate(20deg)}}
+</style>
+<defs>
+<g id="cat">
+<path d="M-16 14 q-20 -2 -18 -20" fill="none" stroke="#2C2417" stroke-width="3.5" stroke-linecap="round"/>
+<ellipse cx="-7" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="11" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="0" cy="12" rx="23" ry="18" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<circle cx="3" cy="-13" r="17" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="-8,-25 -12,-39 1,-31" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<polygon points="9,-29 19,-39 21,-23" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<circle cx="1" cy="-15" r="2.8" fill="#2C2417"/>
+<circle cx="12" cy="-15" r="2.8" fill="#2C2417"/>
+<polygon points="5,-8 11,-8 8,-4" fill="#FF8FA3" stroke="#2C2417" stroke-width="2" stroke-linejoin="round"/>
+<path d="M2 -2 q6 5 12 1" fill="none" stroke="#2C2417" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<g id="meteor">
+<circle cx="0" cy="4" r="14" fill="#8AC926" stroke="#2C2417" stroke-width="3.5"/>
+<circle cx="-6" cy="1" r="4.5" fill="#FF8FA3" stroke="#2C2417" stroke-width="2.5"/>
+<circle cx="7" cy="7" r="3.5" fill="#FFD166" stroke="#2C2417" stroke-width="2.5"/>
+<path d="M-2 -8 Q-4 -18 1 -20 Q4 -18 2 -8" fill="#FFD166" stroke="#2C2417" stroke-width="2.5"/>
+</g>
+<path id="hat210" d="M12 0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+<path id="cmd210" d="M12 0 H88 V-9 H122 V0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+</defs>
+<rect width="640" height="360" fill="#F4EDE0"/>
+<text class="big" x="24" y="32">第8关 · 躲避陨石闯关</text>
+<text class="sm" x="24" y="54">大汇总：克隆陨石 + 飞船躲 + 时间到过关 / 碰到陨石失败</text>
+<rect x="24" y="74" width="326" height="140" rx="10" fill="#FFFFFF" stroke="#2C2417" stroke-width="4"/>
+<circle class="sta" cx="52" cy="96" r="3.5" fill="#4CC9F0"/>
+<circle class="sta" cx="306" cy="88" r="3" fill="#FF8FA3"/>
+<circle class="sta" cx="118" cy="84" r="2.5" fill="#FFD166"/>
+<circle class="sta" cx="282" cy="104" r="3" fill="#4CC9F0"/>
+<circle class="sta" cx="56" cy="126" r="2.5" fill="#8AC926"/>
+<rect x="36" y="80" width="104" height="26" rx="9" fill="#FFD166" stroke="#2C2417" stroke-width="3"/>
+<text class="blk" x="88" y="97">剩余时间 30 秒</text>
+<rect x="148" y="80" width="112" height="26" rx="9" fill="#4CC9F0" stroke="#2C2417" stroke-width="3"/>
+<text class="blk" x="204" y="97">躲满 30 秒 → 过关</text>
+<g transform="translate(90,100)"><g class="m1"><use href="#meteor"/></g></g>
+<g transform="translate(187,100)"><g class="m2"><use href="#meteor"/></g></g>
+<g transform="translate(290,100)"><g class="m3"><use href="#meteor"/></g></g>
+<g transform="translate(187,176) scale(0.9)"><g class="sw"><use href="#cat" color="#FFD166"/></g></g>
+<g class="tw" transform="translate(187,138)"><path d="M0 -8 l2 5 5 1 -4 3 1 5 -4 -3 -4 3 1 -5 -4 -3 5 -1 z" fill="#FF8FA3"/></g>
+<text class="sm" x="24" y="236">陨石：本体隐藏，每 0.5 秒克隆一个</text>
+<text class="sm" x="24" y="258">每个分身随机速度下落，触底就删除自己</text>
+<use href="#hat210" x="392" y="86" fill="#FFD166"/>
+<text class="blk" x="497" y="113">当绿旗被点击（飞船）</text>
+<use href="#cmd210" x="392" y="128" fill="#8AC926"/>
+<text class="blk" x="497" y="155">将 剩余时间 设为 30</text>
+<path d="M404 172 H592 Q602 172 602 182 V252 Q602 262 592 262 H404 Q394 262 394 252 V182 Q394 172 404 172 Z" fill="#FF8FA3" stroke="#2C2417" stroke-width="3.5"/>
+<rect x="410" y="194" width="172" height="56" fill="#F4EDE0"/>
+<text class="blk" x="497" y="190">重复执行：一边躲一边判</text>
+<text class="blk" x="497" y="212">按 ← → 键：改 x 坐标移动</text>
+<text class="blk" x="497" y="231">碰到 陨石 → 说 失败</text>
+<text class="blk" x="497" y="250">剩余时间 = 0 → 说 过关</text>
+<text class="sm" x="392" y="300">顺序：先判失败，再判过关，判完就停止全部脚本</text>
+<text class="mid" x="24" y="350">陨石克隆生成 + 飞船左右躲；碰到陨石先判失败，躲满时间再判过关</text>
+</svg>

@@ -1,0 +1,1039 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scratch克隆与闯关 · 8 关分身术到陨石闯关</title><style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#FFF9F2;color:#2C2417;line-height:1.75;font-size:16px}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+#gate{position:fixed;inset:0;background:#FFF9F2;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+#gate .box{background:#fff;border:3px solid #2C2417;border-radius:18px;padding:32px 26px;max-width:400px;width:100%;text-align:center;box-shadow:6px 6px 0 #FFD166}
+#gate h2{margin:0 0 10px;font-size:20px}
+#gate p{color:#7A6A55;font-size:14px;margin:0 0 18px}
+#gate input{width:100%;padding:12px;border:2px solid #2C2417;border-radius:10px;font-size:16px;outline:none}
+#gate button{margin-top:14px;width:100%;padding:12px;background:#FF8FA3;border:2px solid #2C2417;border-radius:10px;
+  font-size:16px;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 #2C2417}
+#gate button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #2C2417}
+.err{color:#E4572E;min-height:22px;margin-top:10px;font-size:14px}
+.hero{background:#FFD166;border:3px solid #2C2417;border-radius:18px;padding:22px;box-shadow:5px 5px 0 #2C2417;margin-bottom:18px}
+.hero h1{margin:0 0 6px;font-size:25px;line-height:1.3}
+.hero .tag{color:#6B5B45;font-size:15px}
+.chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:#fff;border:2px solid #2C2417;border-radius:999px;padding:3px 11px;font-size:13px}
+.toc{background:#fff;border:3px solid #2C2417;border-radius:14px;padding:14px 16px;margin-bottom:18px}
+.toc b{display:block;margin-bottom:8px}
+.toc-links{display:flex;flex-wrap:wrap;gap:8px}
+.toc-links a{color:#2C2417;text-decoration:none;font-size:13.5px;background:#FFF3D6;border:1.5px solid #2C2417;
+  border-radius:8px;padding:3px 9px}
+.card{background:#fff;border:3px solid #2C2417;border-radius:16px;padding:18px;margin-bottom:18px;
+  box-shadow:4px 4px 0 #FFD166}
+.card h2{margin:0 0 4px;font-size:20px}
+.card .en{color:#7A6A55;font-size:14px;margin-bottom:4px}
+.card .goal{background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0}
+h3{font-size:16px;margin:18px 0 8px;padding-left:9px;border-left:5px solid #FF8FA3}
+.vocab{display:flex;flex-wrap:wrap;gap:7px}
+.vocab span{background:#F6F1E7;border:1.5px solid #2C2417;border-radius:8px;padding:3px 9px;font-size:13.5px}
+.vocab span i{color:#7A6A55;font-style:normal;font-size:12.5px}
+ol.sent{margin:0;padding-left:22px}
+ol.sent li{margin-bottom:7px}
+ol.sent .zh{color:#7A6A55;font-size:14px}
+.dlg .line{margin-bottom:9px;padding:8px 11px;border-radius:10px;background:#F6F1E7}
+.dlg .line.me{background:#FFE3E8}
+.dlg .role{font-size:12.5px;color:#7A6A55;margin-bottom:2px}
+.dlg .zh{color:#7A6A55;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+th,td{border:1.5px solid #2C2417;padding:6px 9px;text-align:left;vertical-align:top}
+th{background:#FFD166}
+details{background:#FBF7EF;border:2px solid #2C2417;border-radius:12px;padding:0;margin:10px 0}
+details summary{cursor:pointer;padding:10px 13px;font-weight:700;font-size:15px;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸ ";color:#FF8FA3}
+details[open] summary::before{content:"▾ "}
+details .body{padding:2px 14px 14px;font-size:14.5px}
+.prompt{background:#2C2417;color:#FFF3D6;border-radius:12px;padding:13px;font-size:13.5px;white-space:pre-wrap;
+  font-family:ui-monospace,Menlo,Consolas,monospace;line-height:1.65}
+.copybtn{margin-top:9px;padding:7px 15px;background:#8AC926;border:2px solid #2C2417;border-radius:9px;
+  font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:2px 2px 0 #2C2417}
+.copybtn:active{transform:translate(2px,2px);box-shadow:0 0 0 #2C2417}
+.media{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.media video,.media .aud{flex:1 1 260px;min-width:0}
+.media video{width:100%;border:2px solid #2C2417;border-radius:10px;background:#000}
+.media audio{width:100%}
+.mlabel{font-size:12.5px;color:#7A6A55;margin-bottom:4px}
+.sect{background:#FFE3E8;border:3px solid #2C2417;border-radius:16px;padding:18px;margin:20px 0;box-shadow:4px 4px 0 #8AC926}
+.sect h2{margin:0 0 10px;font-size:21px}
+.note{background:#FFF3D6;border-left:5px solid #FFD166;border-radius:8px;padding:9px 12px;font-size:14px;margin:10px 0}
+footer{text-align:center;color:#7A6A55;font-size:13px;margin-top:30px;padding-top:16px;border-top:2px dashed #D9CFBC}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:#2C2417;color:#fff;
+  padding:10px 20px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s}
+.toast.on{opacity:1}
+@media(max-width:680px){body{font-size:15.5px}.hero h1{font-size:21px}}
+
+.code{background:#2C2417;color:#F4EDE0;border-radius:12px;padding:14px;overflow-x:auto;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;white-space:pre}
+.lv{background:#fff;border:3px solid #2C2417;border-radius:16px;padding:18px;margin-bottom:18px;
+  box-shadow:4px 4px 0 #8AC926}
+.lv h2{margin:0 0 4px;font-size:20px}
+.lv .concept{display:inline-block;background:#FFD166;border:2px solid #2C2417;border-radius:999px;
+  padding:2px 12px;font-size:13px;margin-bottom:8px}
+.skill{background:#F6F1E7;border:2px solid #2C2417;border-radius:12px;padding:14px;margin:12px 0}
+.skill h4{margin:0 0 8px;font-size:15.5px}
+.skill.fire{background:#FFF0E6}
+.skill.gold{background:#EAF7E1}
+.skill.mirror{background:#F0EBFA}
+.skill.card{background:#E9F4FB}
+.badge{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;border:1.5px solid #2C2417;
+  background:#FFD166;margin-left:6px}
+.mon{display:inline-block;background:#2C2417;color:#FFD166;border-radius:8px;padding:2px 10px;
+  font-size:13px;margin:3px 4px 3px 0}
+.ach{display:inline-block;background:#8AC926;color:#2C2417;border:2px solid #2C2417;border-radius:999px;
+  padding:2px 11px;font-size:13px;margin:3px 4px 3px 0;font-weight:700}
+</style></head><body>
+<div id="gate">
+  <div class="box">
+    <h2>🔐 请输入访问密码</h2>
+    <p>购买后密码会单独发给你。本页为私有交付页，请勿外传。</p>
+    <input id="pw" type="password" placeholder="输入密码" autocomplete="off">
+    <button onclick="tryGate()">进入产品</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+<script>
+/* 校验值只存不可逆的加盐 SHA-256，页面内不含密码明文、也不含可逆编码 */
+const SALT="834ac7f37569fd6d", HASH="94ff6e39ca64063a4c47ebef67156b077c67a1677d6fe427749421e840fb448e";
+async function sha256(t){
+  const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+function unlock(){document.getElementById("gate").style.display="none";
+  try{sessionStorage.setItem("sk_code_07", "1");}catch(e){}}
+async function tryGate(){
+  const v=document.getElementById("pw").value;
+  if(await sha256(SALT+":"+v)===HASH){unlock();}
+  else{document.getElementById("err").textContent="密码错误，请核对后重试。";}
+}
+document.getElementById("pw").addEventListener("keydown",function(e){if(e.key==="Enter")tryGate();});
+try{if(sessionStorage.getItem("sk_code_07")==="1"){document.getElementById("gate").style.display="none";}}catch(e){}
+</script>
+
+<div class="wrap">
+<header class="hero">
+<h1>Scratch克隆与闯关 · 8 关分身术到陨石闯关</h1>
+<div class="tag">学会用&quot;克隆自己&quot;造分身，再用分身做出一整个闯关游戏</div>
+<div class="chips"><span class="chip">10岁</span><span class="chip">Scratch</span><span class="chip">克隆</span><span class="chip">闯关游戏</span><span class="chip">图形化编程</span></div>
+</header>
+<nav class="toc"><b>📑 本页目录</b><div class="toc-links"><a href="#intro">📖 这是什么</a><a href="#path">🗺️ 学习路径</a>
+<a href="#L1">关卡1</a>
+<a href="#L2">关卡2</a>
+<a href="#L3">关卡3</a>
+<a href="#L4">关卡4</a>
+<a href="#L5">关卡5</a>
+<a href="#L6">关卡6</a>
+<a href="#L7">关卡7</a>
+<a href="#L8">关卡8</a>
+<a href="#enlighten">🧩 启蒙活动</a><a href="#prompts">🤖 豆包指令包</a>
+</div></nav>
+<div class="card" id="intro"><h2>这是什么？</h2><p>一套以 Scratch 图形化积木为载体的编程课，8 个关卡从&quot;克隆自己&quot;造分身开始，认识&quot;当作为克隆体启动时&quot;、克隆体独立运动、本体与克隆体分工，再学会用私有变量给每个分身各记各的数、用计时器做倒计时判定、用关卡变量实现&quot;闯过一关进下一关&quot;，最后综合做出一个&quot;躲避陨石&quot;闯关小游戏。每关配齐关键练习、火眼金睛拆题、三级思路对比、照妖镜用例和教学卡片，孩子自己搭、自己试、自己修。</p><h3>适合谁</h3><p>适合 10 岁、已经会用 Scratch 基础积木（移动、重复执行、碰到侦测）的孩子。解决&quot;只会复制别人的作品&quot;&quot;一碰到克隆就分不清本体和分身&quot;&quot;做完一个效果却做不出一整个游戏&quot;的问题。家长不需要懂编程，照着卡片里的积木序列描述就能一起搭；遇错时用照妖镜的妖怪口诀引导孩子自己找错，不直接给答案。</p><h3>怎么用</h3><ol class="sent"><li>跟着每关的教学卡片，在 Scratch 里从零搭出积木序列 </li><li> 先让孩子自己试火眼金睛题，再对答案看拆解 </li><li> 用豆包陪练指令让 AI 当陪练出题、批改思路</li></ol></div>
+<div class="sect" id="path"><h2>🗺️ 学习路径定位</h2>
+<div class="note"><b>本产品在路径中的位置：</b>本产品位于 L2（9-10 岁）图形化编程路径的后段，前接&quot;顺序、循环、条件、变量、列表、自制积木&quot;等基础积木产品</div>
+<div class="note"><b>学完之后接：</b>学完之后接 L3 的 Python 入门产品，把&quot;角色克隆、事件、变量、闯关判定&quot;这些思路平移到文本代码</div>
+<h3>阶段通关标准</h3><ul class="sent"><li>能说清本体与克隆体的区别，会用&quot;当作为克隆体启动时&quot;给分身写专属脚本</li><li>能用&quot;仅适用于当前角色&quot;的私有变量让每个分身各记各的数据</li><li>能用计时器做倒计时，搭出过关与失败两种判定，并用关卡变量实现多关闯关</li><li>能独立完成一个综合小游戏（躲避陨石），并说清&quot;陨石、飞船、判定&quot;三部分的分工</li></ul></div>
+<div class="lv" id="L1">
+<h2>关卡 1 · 认识克隆：分身术</h2>
+<span class="concept">克隆 · 用&quot;克隆自己&quot;积木造出一个一模一样的分身</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">能说出&quot;克隆自己&quot;积木的作用，能区分本体和克隆体</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level01.svg" alt="关卡1示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level01.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level01.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>&quot;克隆自己&quot;会在舞台上造出一个一模一样的新角色，长得和本体一样</li><li>造出来的叫克隆体，原来的那个叫本体；克隆体是从本体复制出来的</li><li>克隆体出生时和本体站在同一个位置、用同一个造型，先把它安顿到别处才看得出分身</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 小猫站在舞台中央，点一次&quot;克隆自己&quot;积木，舞台上会出现什么？</b>
+<div style="color:#7A6A55;font-size:14px">提示：克隆是复制一个一模一样的。</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">会出现两只一模一样的小猫，一只是本体，一只是克隆体。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 小猫已经用&quot;克隆自己&quot;造出 3 个分身，舞台上最多能看到几只小猫？哪一只是本体？</b>
+<div style="color:#7A6A55;font-size:14px">提示：本体一直在，分身是额外多出来的。</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">一共 4 只（1 只本体加 3 只克隆体），原来那只是本体。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. 克隆体刚出生时站在哪里？</b>
+<div style="color:#7A6A55;font-size:14px">提示：它是从本体身上&quot;分&quot;出来的，出生位置会是什么？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">和本体站在同一个位置，两只叠在一起。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 克隆积木的作用与本体/克隆体区分 ｜ 易失分点：把&quot;克隆&quot;当成&quot;把角色变到别的地方&quot;</div>
+<div class="note"><b>题面：</b>小猫执行了一次&quot;克隆自己&quot;。下面说法正确的是？A. 舞台上出现两只小猫，一只是本体，一只是克隆体 B. 小猫哗啦啦变出一大群，挤满舞台 C. 小猫在原地分出一个大小不同的分身 D. 小猫被克隆后就消失了</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：&quot;克隆自己&quot;就是原样复制一个一模一样的，本体还在，多出来的是分身。🍔 像复印机把一张纸放进去，出来两张一样的纸，原来那张没有消失。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子懂不懂克隆是复制不是变身&quot;，错误选项分别抓&quot;无限繁殖&quot;&quot;大小变样&quot;&quot;本体消失&quot;三种常见误读。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把&quot;克隆&quot;和&quot;移动、变身&quot;混在一起，觉得克隆就是让角色换个样子换个地方，因为游戏里的&quot;分身&quot;常常自带动画特效。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;数量&quot;和&quot;谁是谁&quot;：执行一次克隆就多一个，总数变 2；本体永远是原来的那个，克隆体和它一模一样。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先数&quot;克隆自己&quot;被执行了几次，再想本体还在不在，最后想克隆体是不是和本体长得一样。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 橡皮泥妖</b><br>失分现象：以为克隆会改变本体，把分身捏变形了<br>火眼口诀：克隆是&quot;多加一个&quot;，不是&quot;改掉原来的&quot;，🍔 像复印不会让原稿变模糊</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：我选了 B，觉得点一次&quot;克隆自己&quot;，小猫就会哗啦啦变出一大群。</div>
+<div class="note"><b>我当时怎么想错的：</b>我把&quot;克隆自己&quot;想成&quot;无限变多&quot;，没注意克隆一次只多一个分身，数量是 1 个不是一群。</div>
+<div class="code">
+小猫执行一次&quot;克隆自己&quot;：
+舞台上出现 2 只小猫：本体（原来的）+ 克隆体（新复制的）
+两只长得一模一样，所以选 A。</div>
+<div class="note"><b>防坑口诀：</b>克隆一次多一个，本体一直都在；要分身先复制，别把原稿变没了。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>用&quot;克隆自己&quot;给小猫做 4 个分身，让它们站在 5 个不同的位置。你打算怎么搭？</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>复制一堆脚本，每个都让小猫动一动，结果分不清谁是谁。</td><td>只会点 4 次&quot;克隆自己&quot;，所有克隆体挤在本体身上，看不出分身。</td><td>以为克隆体会自己动起来，把&quot;移动&quot;积木只放在&quot;当绿旗被点击&quot;下面，结果一群小猫挤在原地。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>想到克隆体是&quot;复制品&quot;，需要告诉每个克隆体&quot;走到哪&quot;，会想到用&quot;当作为克隆体启动时&quot;。</td><td>会写&quot;重复 4 次 克隆自己&quot;，再用&quot;当作为克隆体启动时 → 移到 随机位置&quot;，分身各就各位。</td><td>忘记本体也会执行绿旗脚本，本体也跑到随机位置，和克隆体混在一起。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会先想清楚&quot;本体负责生、克隆体负责表演&quot;，把本体的脚本和克隆体的脚本分开写，还会用&quot;隐藏&quot;处理本体。</td><td>本体隐藏只负责循环克隆，克隆体启动后移到指定位置再显示，职责清清楚楚。</td><td>忘记在克隆体启动时&quot;显示&quot;，克隆体生出来是透明的，舞台上空空的。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会点一次克隆 → 会让克隆体各自就位 → 会让本体和克隆体分工，各管各的脚本。</div>
+<div class="note">🍔 克隆就像复印签到表：复印机&quot;克隆自己&quot;一下，多出来一张表；每张表都要有人（脚本）去发，不然它们只会堆在复印机旁边。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>让小猫用&quot;重复 5 次（克隆自己）&quot;造 5 个分身，再让每个克隆体启动后移到舞台左侧不同高度。搭完数一数：舞台上应该有几只小猫？如果有 6 只，多了谁？</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>重复 5 次克隆自己，克隆体启动后移到不同位置</code></td><td><code>舞台上 6 只小猫（1 本体加 5 克隆体），各在不同位置</code></td></tr>
+<tr><td><code>本体没有隐藏，也执行了移动脚本</code></td><td><code>还是 6 只，但本体也挪了窝，可能和某只克隆体重叠</code></td></tr>
+<tr><td><code>克隆体启动后忘了&quot;显示&quot;</code></td><td><code>舞台上只有 1 只本体，5 个克隆体隐形</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 橡皮泥妖</span><span class="mon">🐲 隐形妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 分身魔术师：一次说出舞台上共有几只猫、哪只是本体</span><span class="ach">🏅 复制神手：让克隆体各就各位，不挤在一堆</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：克隆是复制不是变形，🍔 像复印不会让原稿长胡子<br>克隆体登场先&quot;显示&quot;，🍔 像上台前先拉开大幕</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>小猫的分身术</b> ｜ 知识点：&quot;克隆自己&quot;积木、本体与克隆体、克隆体出生位置</div>
+<div class="note"><b>场景与目标：</b>小猫站在舞台中间。要求：点绿旗后，小猫用&quot;重复 4 次（克隆自己）&quot;变出 4 个分身，每个克隆体启动后移到舞台下方一个不同的位置，最后小猫说出&quot;我变出了 4 个分身&quot;。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先让孩子点一次&quot;克隆自己&quot;，数一数舞台上几只猫，分清本体和克隆体。</li><li>用&quot;重复 4 次&quot;包住&quot;克隆自己&quot;，问孩子&quot;点一次多一只，4 次多几只&quot;。</li><li>讲到&quot;当作为克隆体启动时&quot;，告诉孩子这是克隆体出生后立刻执行的脚本。</li><li>让每个克隆体移到不同位置，可以调整 x 或 y 让它们错开，再看本体还站不站在中间。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+当绿旗被点击
+重复 ? 次
+  克隆自己
+当作为克隆体启动时
+  移到 x: ? y: ?
+  显示</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+当绿旗被点击
+重复 4 次
+  克隆自己
+当作为克隆体启动时
+  移到 x: 随机取数(-200) 到 (200) y: -120
+  显示</div>
+<div class="note"><b>运行结果：</b>点绿旗后，舞台下方出现 4 只克隆小猫，加上中间的本体共 5 只；4 只分身横排在下方，本体留在中间。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：让每个克隆体在 1 秒内从出生点滑到舞台上方，用&quot;在 1 秒内滑行到&quot;积木。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db1">你是 Scratch 陪练老师，我是 10 岁孩子，在学克隆。先考我：小猫点一次&quot;克隆自己&quot;，舞台上会多出几只猫？本体还在吗？我答错就提示&quot;想想复印机&quot;。再让我说说&quot;当作为克隆体启动时&quot;是干什么用的。然后给我出题：重复 5 次克隆自己，舞台上有几只猫？我数错就带我数：1 只本体加 5 只分身。最后让我用文字描述一段积木：小猫重复 4 次克隆自己，分身出生后各自移到不同位置，说得不完整就追问&quot;分身出生后要先做什么？&quot;
+</div>
+<button class="copybtn" onclick='cp(document.getElementById("db1").innerText,this)'>复制这段指令</button>
+</div>
+<div class="lv" id="L2">
+<h2>关卡 2 · 当克隆体启动</h2>
+<span class="concept">克隆体事件 · &quot;当作为克隆体启动时&quot;让每个分身有自己的脚本</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">会用&quot;当作为克隆体启动时&quot;给克隆体单独写脚本，让每个分身都执行属于自己的代码</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level02.svg" alt="关卡2示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level02.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level02.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>克隆体出生后会立刻执行&quot;当作为克隆体启动时&quot;下面的积木</li><li>本体不会执行&quot;当作为克隆体启动时&quot;，它只听&quot;当绿旗被点击&quot;</li><li>复制几个分身，&quot;当作为克隆体启动时&quot;下面的积木就被执行几遍</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 克隆体出生后，下面哪个积木会被执行？A. 当绿旗被点击 B. 当作为克隆体启动时 C. 当按下空格键</b>
+<div style="color:#7A6A55;font-size:14px">提示：哪个积木是克隆体专属的&quot;入场券&quot;？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">B。&quot;当作为克隆体启动时&quot;是克隆体出生后自动触发的。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 小猫克隆了 3 个分身，&quot;当作为克隆体启动时&quot;下面的积木会被执行几次？</b>
+<div style="color:#7A6A55;font-size:14px">提示：每个分身都会执行一遍吗？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">3 次，每个克隆体各执行一遍。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. 把&quot;移到 x:0 y:0&quot;放在&quot;当作为克隆体启动时&quot;下面，谁会在出生时跑到舞台中心？</b>
+<div style="color:#7A6A55;font-size:14px">提示：这段脚本归谁执行？本体碰得到它吗？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">只有克隆体会执行，每个分身出生都跑到中心；本体不执行这段。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 克隆体事件积木的触发时机 ｜ 易失分点：把&quot;当作为克隆体启动时&quot;当成绿旗的另一种写法</div>
+<div class="note"><b>题面：</b>小猫的脚本是：&quot;当绿旗被点击 → 克隆自己&quot;；&quot;当作为克隆体启动时 → 将大小增加 50&quot;。点绿旗后，舞台上会发生什么？A. 小猫变大 50%，克隆体也变大 50% B. 小猫不变，克隆体变大 50% C. 小猫变大 50%，克隆体不变 D. 什么都不会发生</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：&quot;当作为克隆体启动时&quot;只认克隆体，本体只听&quot;当绿旗被点击&quot;。🍔 像两个不同的闹钟：绿旗闹钟响，本体起床；克隆闹钟响，分身才起床。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子能不能分清哪段脚本归谁执行&quot;，选项 A&quot;本体也变大&quot;是最大的诱饵，因为多数孩子只盯积木不看归属。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把&quot;当作为克隆体启动时&quot;当成&quot;绿旗启动的另一种写法&quot;，觉得两块积木都会被启动，因为两者都是开头的帽子积木。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;帽子决定谁执行&quot;：克隆体出生的那一刻，才轮到&quot;当作为克隆体启动时&quot;下面的积木；绿旗只启动另一块。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先找&quot;当作为克隆体启动时&quot;这块帽子，再看它下面挂的积木只影响谁，最后确认绿旗只启动&quot;当绿旗被点击&quot;。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 双面胶妖</b><br>失分现象：把&quot;当作为克隆体启动时&quot;当成绿旗的另一种写法，本体也跟着变身<br>火眼口诀：先认帽子再认身体，🍔 像分清是&quot;7 点闹钟&quot;还是&quot;8 点闹钟&quot;再起床</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：我选了 A，觉得两块积木都是开头的帽子，绿旗一响两块一起执行，小猫和分身都变大。</div>
+<div class="note"><b>我当时怎么想错的：</b>我没分清帽子的归属，把&quot;当作为克隆体启动时&quot;当成了&quot;当绿旗被点击&quot;的姐妹版。</div>
+<div class="code">
+&quot;当绿旗被点击&quot;下面的积木：本体执行 → 克隆自己
+&quot;当作为克隆体启动时&quot;下面的积木：克隆体执行 → 将大小增加 50
+所以本体大小不变，克隆体变大 50%，选 B。</div>
+<div class="note"><b>防坑口诀：</b>绿旗帽子管本体，克隆帽子管分身；谁戴帽子谁执行。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>让小猫本体站在左上角不动，克隆 4 个分身站到舞台四角。怎么用&quot;当作为克隆体启动时&quot;来搭？</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>把所有脚本都写在绿旗下面，克隆体出生后只能傻站着，分身都挤在本体旁边。</td><td>只有一个&quot;当绿旗被点击 → 重复 4 次 克隆自己&quot;，没有给克隆体写任何脚本。</td><td>以为克隆体会自动复制本体的位置，其实克隆体出生时只会站在本体旁边。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>发现克隆体要有自己的脚本，用&quot;当作为克隆体启动时&quot;让分身移动到各自的位置。</td><td>会写&quot;当作为克隆体启动时 → 移到 舞台四角中的某个位置&quot;，用随机或算好的坐标。</td><td>4 个分身都随机移动，可能两个挤在同一个角，位置不齐。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会用变量&quot;分身编号&quot;记录这是第几个分身，按编号对应 4 个固定位置，还会让本体先隐藏。</td><td>本体隐藏 → 重复 4 次（分身编号增加 1 → 克隆自己）；克隆体启动后按编号移到对应角，再显示。</td><td>忘了给&quot;分身编号&quot;设初值 0，第一个分身拿到乱码编号，位置错乱。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会给克隆体写脚本 → 会让分身各去各的位置 → 会用编号给分身排位，位置不重不漏。</div>
+<div class="note">🍔 &quot;当作为克隆体启动时&quot;就像每个分身戴着自己的工牌：工牌上写着&quot;你一出生就去做这件事&quot;，所以每个分身都知道该干嘛，而不是挤在原地发呆。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>搭一个程序：本体克隆 3 个分身，每个克隆体启动后把颜色特效增加 25，让 3 个分身颜色各不相同。搭完说出本体会不会变色。</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>克隆体启动时&quot;将颜色特效增加 25&quot;</code></td><td><code>3 个分身颜色分别变 25、50、75，本体颜色不变</code></td></tr>
+<tr><td><code>把&quot;将颜色特效增加 25&quot;误放在&quot;当绿旗被点击&quot;下面</code></td><td><code>本体颜色变 25，克隆体没变，和题目要求相反</code></td></tr>
+<tr><td><code>克隆体启动时增加 25，绿旗脚本里克隆前也增加 25</code></td><td><code>分身颜色依次是 50、75、100，顺序错乱</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 双面胶妖</span><span class="mon">🐲 隐形妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 帽子法官：能说出每段脚本归本体还是克隆体执行</span><span class="ach">🏅 分身染色师：让每个分身颜色各不相同，本体不变</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：分清帽子再挂积木，🍔 像两个闹钟别调错<br>克隆体出生先&quot;显示&quot;，再变样子</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>彩色的克隆小猫</b> ｜ 知识点：&quot;当作为克隆体启动时&quot;、克隆体专属脚本、颜色特效</div>
+<div class="note"><b>场景与目标：</b>舞台上有 1 只本体小猫。要求：点绿旗后，本体在 1 秒内滑到舞台左上角并隐藏，同时克隆 3 个分身；每个克隆体启动后把颜色特效增加 50、移到不同位置，再显示。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先问孩子：&quot;谁负责克隆？谁负责变颜色？&quot;引导分成本体和克隆体两段脚本。</li><li>本体的绿旗脚本里做三件事：移动、克隆、隐藏，注意克隆要在隐藏之前，否则克隆体也隐藏了。</li><li>克隆体的&quot;当作为克隆体启动时&quot;里做三件事：变颜色、移位置、显示。</li><li>用&quot;分身编号&quot;变量区分 3 个分身的位置，编号不同位置就不同。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+当绿旗被点击
+移到 x: -200 y: 150
+将 [分身编号] 设为 0
+重复 3 次
+  将 [分身编号] 增加 1
+  克隆自己
+隐藏
+当作为克隆体启动时
+  将 颜色特效 增加 50
+  移到 x: ? y: 分身编号 × 60
+  显示</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+当绿旗被点击
+移到 x: -200 y: 150
+将 [分身编号] 设为 0
+重复 3 次
+  将 [分身编号] 增加 1
+  克隆自己
+隐藏
+当作为克隆体启动时
+  将 颜色特效 增加 50
+  移到 x: 0 y: 分身编号 × 60
+  显示</div>
+<div class="note"><b>运行结果：</b>点绿旗后，本体滑到左上角并隐藏；3 个彩色分身出现在舞台中央，颜色各不相同，从上到下排成一列。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：让每个分身还说出自己的编号：&quot;我是第 2 个分身&quot;，用&quot;说 连接&quot;积木。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db2">你是 Scratch 陪练，我是 10 岁孩子，在学&quot;当作为克隆体启动时&quot;。先考我：这块积木是谁执行？&quot;当绿旗被点击&quot;是谁执行？我混了就带我分清两顶帽子。再问我：克隆 3 个分身，这块积木下的脚本执行几次？然后让我说一段积木：本体隐藏前先克隆，克隆体启动后变色、移位置、显示。漏了&quot;显示&quot;要提醒我：分身生出来是透明的吗？最后给我一个小任务：让 2 个分身说出&quot;我是第几个&quot;。
+</div>
+<button class="copybtn" onclick='cp(document.getElementById("db2").innerText,this)'>复制这段指令</button>
+</div>
+<div class="lv" id="L3">
+<h2>关卡 3 · 克隆体的独立运动</h2>
+<span class="concept">独立运动 · 每个克隆体有自己的坐标、方向和速度，各动各的</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">能让克隆体各自独立地移动，走不同的路、有不同的大小和速度，互不影响</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level03.svg" alt="关卡3示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level03.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level03.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>克隆体一出生就是独立的角色，各有各的 x、y、方向</li><li>用&quot;当作为克隆体启动时 + 重复执行&quot;让每个分身自己跑，互不干扰</li><li>修改一个克隆体的位置，不影响其他克隆体和本体</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 3 个克隆体同时执行&quot;将 x 坐标增加 10&quot;，它们会怎样？</b>
+<div style="color:#7A6A55;font-size:14px">提示：每个克隆体的 x 坐标是独立的还是共用的？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">每个克隆体都各自向右移动 10，各自的位置互不影响。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 一个克隆体向右飞，另一个克隆体想向左飞，怎么让它们各飞各的？</b>
+<div style="color:#7A6A55;font-size:14px">提示：每个克隆体在自己的脚本里写自己的移动方向。</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">克隆体 A 的脚本写&quot;将 x 坐标增加 10&quot;，克隆体 B 的脚本写&quot;将 x 坐标增加 -10&quot;，各走各的。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. 克隆体在&quot;重复执行&quot;里移动，为什么不加&quot;等待&quot;会跑得飞快？</b>
+<div style="color:#7A6A55;font-size:14px">提示：循环转一圈要花多长时间？停不停？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">不加等待，脚本瞬间转几千圈，角色快得像瞬移；加&quot;等待 0.1 秒&quot;才看得清。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 克隆体坐标与动作的独立性 ｜ 易失分点：以为改一个克隆体，本体和所有分身都跟着变</div>
+<div class="note"><b>题面：</b>小猫本体在 (0,0)，克隆体 A 执行&quot;将 y 坐标增加 100&quot;。下面说法正确的是？A. 本体的 y 坐标也变成 100 B. 只有克隆体 A 的 y 坐标变成 100 C. 所有克隆体的 y 坐标都变成 100 D. 小猫会跳起来再落回原位</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：每个克隆体自己带着一套坐标，动谁就是谁。🍔 像同学各自背自己的书包，你换书包不会让别人也换。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子懂不懂克隆体数据的独立性&quot;，选项 A、C 分别抓&quot;本体被连坐&quot;&quot;全体分身一起变&quot;两种误解。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把克隆体当成本体的&quot;影子&quot;，觉得改影子一定影响本体，因为平时照镜子时镜子里的人和你是同时动的。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;谁执行这段脚本谁才变&quot;：克隆体 A 的脚本只动 A 自己的坐标，本体和其他分身都不变。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先找执行脚本的是谁（帽子），再看它改了哪个数据（x、y、大小、方向），最后想这个数据是&quot;谁的&quot;。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 镜子妖</b><br>失分现象：以为克隆体是本体的影子，动分身就牵连本体<br>火眼口诀：克隆体是独立的人，🍔 像复印出的表各填各的名字</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：我选了 A，觉得克隆体 A 是本体变出来的，A 动了，本体当然也一起动。</div>
+<div class="note"><b>我当时怎么想错的：</b>我把克隆体当成和本体共享身体，没意识到每个克隆体自带一套坐标。</div>
+<div class="code">
+执行脚本的是克隆体 A
+它改的是自己的 y 坐标，不影响别人
+所以只有克隆体 A 的 y 坐标变成 100，选 B。</div>
+<div class="note"><b>防坑口诀：</b>分身自带坐标本，谁动谁记谁的账；本体和分身，各动各的。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>让 5 个克隆体从舞台上方同时落下，速度各不相同，像下雨一样。怎么搭？</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>给本体写一串移动脚本，结果只有一只猫在动，其余站在上面。</td><td>把&quot;将 y 坐标增加&quot;写在&quot;当绿旗被点击&quot;下面，克隆体出生后没有脚本，全都不动。</td><td>克隆体脚本写对了，但忘了让每个分身的速度不同，5 只猫齐刷刷掉下去。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>会为克隆体写&quot;当作为克隆体启动时 + 重复执行（将 y 坐标增加 -速度）&quot;。</td><td>会用随机数设速度，例如&quot;将 下落速度 设为 随机取数 2 到 8&quot;，让每只猫速度不同。</td><td>速度变量是&quot;适用于所有角色&quot;的，所有分身共用同一个速度，改了等于没改。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会用&quot;仅适用于当前角色&quot;的私有变量存每个克隆体的速度，还会在落到底部后删除这个克隆体。</td><td>每个克隆体启动时设自己的私有速度，循环移动，碰到底部&quot;删除此克隆体&quot;，不积压。</td><td>忘了&quot;删除此克隆体&quot;，舞台越积越多，越来越卡。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会让克隆体动起来 → 会让每个分身速度不同 → 会用私有变量存每份数据、落到底自动删除。</div>
+<div class="note">🍔 克隆体独立运动就像很多架纸飞机同时飞：每架飞机有自己的方向和速度，你调其中一架的翅膀，别的飞机不会跟着拐弯。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>搭&quot;克隆体下雨&quot;程序：克隆 5 个分身，每个克隆体从上方随机位置开始，各自用不同的速度往下落。试运行后回答：如果 5 个分身速度都一样，会看到什么现象？怎么改？</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>5 个分身速度全是 5</code></td><td><code>5 只猫排成一排齐刷刷往下掉，像列队不像下雨</code></td></tr>
+<tr><td><code>用随机数设速度 2 到 8</code></td><td><code>快的先落地，慢的还在上面，下落有先有后</code></td></tr>
+<tr><td><code>落到底后没有&quot;删除此克隆体&quot;</code></td><td><code>克隆体积在底部，数量越来越多，运行变卡</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 列队妖</span><span class="mon">🐲 拥堵妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 独立飞行员：5 个分身速度、位置各不相同，互不干扰</span><span class="ach">🏅 清场能手：分身完成任务后自己删除，舞台不拥挤</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：每个分身启动时用随机数设自己的速度，🍔 像每个人都走自己的步子<br>碰到边缘或底部就&quot;删除此克隆体&quot;</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>克隆体下雨</b> ｜ 知识点：克隆体独立坐标、私有速度、删除此克隆体</div>
+<div class="note"><b>场景与目标：</b>舞台上方并排出现 5 只小猫克隆体，每个克隆体从随机 x 位置开始，用不同的下落速度（2 到 8）落到舞台底部，落到底后自动消失。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先问孩子：&quot;要让每个分身速度不同，这个数字存在哪？&quot;引出私有变量&quot;下落速度&quot;。</li><li>在&quot;当作为克隆体启动时&quot;里，先用随机数给&quot;下落速度&quot;设一个值。</li><li>用&quot;重复执行（将 y 坐标增加 -下落速度）&quot;让分身一直下落。</li><li>加&quot;如果 y 坐标 &lt; -170 那么 删除此克隆体&quot;，防止越积越多。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+当作为克隆体启动时
+将 [下落速度] 设为 随机取数(2) 到 (8)
+重复执行
+  将 y 坐标增加 -下落速度
+  如果 (y 坐标 &lt; -170) 那么
+    删除此克隆体</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+当绿旗被点击
+重复 5 次
+  移到 x: 随机取数(-200) 到 (200) y: 170
+  克隆自己
+当作为克隆体启动时
+  将 [下落速度] 设为 随机取数(2) 到 (8)
+  重复执行
+    将 y 坐标增加 -下落速度
+    如果 (y 坐标 &lt; -170) 那么
+      删除此克隆体</div>
+<div class="note"><b>运行结果：</b>点绿旗后，5 只小猫克隆体从舞台上方不同位置落下，速度快慢不一，先落的先触底消失，底部不积压。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：让小猫在下落时边落边转圈（旋转），并让其中 3 只向左转、2 只向右转。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db3">你是 Scratch 陪练，我是 10 岁孩子，在学克隆体独立运动。先考我：3 个克隆体各改各的 x 坐标，会影响别人吗？再问我：要让 5 个分身速度不同，速度这个数应该存在哪种变量里？我答错就带我想&quot;每个分身都要一个自己的速度&quot;。然后让我说一段程序：分身出生后设随机速度、一直往下落、触底删除。漏了删除就提醒我&quot;分身落到底会不会堆积&quot;。最后让我说说&quot;删除此克隆体&quot;是干什么的。
+</div>
+<button class="copybtn" onclick='cp(document.getElementById("db3").innerText,this)'>复制这段指令</button>
+</div>
+<div class="lv" id="L4">
+<h2>关卡 4 · 克隆体与本体分工</h2>
+<span class="concept">分工 · 本体负责生成与管理，克隆体负责表演</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">能设计&quot;本体隐藏只克隆、克隆体出现去干活&quot;的分工模式，并理解先克隆再隐藏的原因</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level04.svg" alt="关卡4示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level04.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level04.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>本体是总指挥，藏在幕后不停地克隆；克隆体是演员，出生后上台表演</li><li>本体先克隆再隐藏，否则克隆体也跟着隐藏</li><li>隐藏的本体还能继续克隆，隐藏只是看不见，不影响它干活</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 本体要隐身只留分身，先&quot;克隆自己&quot;还是先&quot;隐藏&quot;？为什么？</b>
+<div style="color:#7A6A55;font-size:14px">提示：克隆体是复制本体的状态，包括可见不可见。</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">先克隆再隐藏；先隐藏的话，克隆体出生时也是隐藏的，舞台上什么都没有。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 本体隐藏后还能继续&quot;克隆自己&quot;吗？</b>
+<div style="color:#7A6A55;font-size:14px">提示：隐藏是看不见，还是已经从舞台上消失了？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">能。隐藏只是让本体看不见，它还能继续执行克隆。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. 做一棵会自动结果的苹果树：树本体藏着，不断克隆苹果掉下来。谁负责克隆？谁负责掉？</b>
+<div style="color:#7A6A55;font-size:14px">提示：生成果子的是谁，掉果子的是谁？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">树本体负责&quot;克隆自己&quot;，每个苹果克隆体负责&quot;往下掉&quot;。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 本体与克隆体的职责分工 ｜ 易失分点：先隐藏再克隆，克隆体一起隐形</div>
+<div class="note"><b>题面：</b>做&quot;天上下星星&quot;：星星本体隐藏，重复执行每 1 秒克隆一个自己，克隆体启动后从上方落下来。下面说法正确的是？A. 必须先隐藏再克隆，这样本体隐身、克隆体可见 B. 必须先克隆再隐藏，否则克隆体也隐身 C. 克隆和隐藏的顺序无所谓，效果一样 D. 本体不能隐藏，隐藏了就不能克隆了</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：克隆体复制的是&quot;克隆那一刻&quot;的本体状态，所以要先克隆再隐藏。🍔 像先拍合影再离场，合影里才有你；你先跑了，照片里就没有你。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子懂不懂克隆复制的时机&quot;，选项 A 是最常见的想当然做法，还专门设计成&quot;看着很合理&quot;。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把&quot;隐藏&quot;当成&quot;退出舞台&quot;，觉得藏起来就不能干活，其实角色隐藏后脚本照常运行。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;顺序&quot;：克隆在前，隐藏在后；克隆体出生那一刻继承的是本体的&quot;可见&quot;状态。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先看克隆体出生的那一刻本体是什么状态（可见还是隐藏），再决定克隆和隐藏谁先谁后，最后检查隐藏后本体还能不能继续执行。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 隐身传染妖</b><br>失分现象：先藏本体再克隆，分身全体隐身<br>火眼口诀：先克隆后隐藏，🍔 像先照完相再离场</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：我把&quot;隐藏&quot;放在&quot;克隆自己&quot;前面，觉得本体先躲起来，克隆出来的分身就能登场。</div>
+<div class="note"><b>我当时怎么想错的：</b>我以为克隆体是另起炉灶的新角色，忘了它是从本体&quot;复印&quot;出来的，连隐身状态一起复印了。</div>
+<div class="code">
+正确顺序：先&quot;克隆自己&quot;，再&quot;隐藏&quot;
+克隆体出生时复制的是此刻本体的状态：看得见
+本体随后隐藏，但还能继续执行&quot;克隆自己&quot;
+所以选 B。</div>
+<div class="note"><b>防坑口诀：</b>先克隆后隐藏，分身才登场；本体藏起来，工作不停摆。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>让一棵苹果树每隔 2 秒掉一个苹果，苹果落到地上就消失。怎么分工搭出来？</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>把&quot;每隔 2 秒克隆&quot;和&quot;苹果下落&quot;写在同一个脚本里，结果苹果还没落地，树上又冒出新的。</td><td>只写&quot;当绿旗被点击 → 重复执行（等待 2 秒 → 克隆自己）&quot;，没给苹果写下落脚本。</td><td>给克隆体写下落脚本时，把本体也拖进了重复下落，树跟着掉下来。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>会分两段：本体的&quot;隔 2 秒克隆&quot;，克隆体的&quot;从树顶落到底部再删除&quot;。</td><td>会用&quot;当作为克隆体启动时 → 移到 树顶 → 重复执行（将 y 坐标增加 -速度 → 如果触底 删除此克隆体）&quot;。</td><td>忘了苹果是克隆体，把下落脚本挂在绿旗下，树不会掉但苹果也不会掉。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会把&quot;树顶坐标&quot;用变量固定好，让每个克隆体从同一个点下落，还考虑苹果落地后先隐藏再删除防止闪烁。</td><td>树本体只做&quot;隔 2 秒克隆&quot;，克隆体启动后从 (x, 150) 下落，触底&quot;删除此克隆体&quot;，职责一目了然。</td><td>把下落速度和位置写死，换成别的水果（位置不同）就要大改。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会分开想&quot;谁生谁表演&quot; → 会把生和表演写成两段脚本 → 会用变量管理位置和速度，换角色也不用大改。</div>
+<div class="note">🍔 本体和克隆体分工就像皮影戏：幕后师傅（本体）只管一个个地剪出皮影；台前演员（克隆体）负责上场表演。师傅一直在幕后工作，观众只看得到台前的戏。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>搭&quot;自动下蛋&quot;程序：母鸡本体隐藏，每 1 秒克隆一个蛋，蛋克隆体从鸡窝位置掉落到地面，触底后消失。写出完整分工：谁负责克隆？谁负责下落？</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>母鸡每 1 秒克隆一个蛋，蛋克隆体从高处下落</code></td><td><code>舞台每隔 1 秒出现一个新蛋并下落</code></td></tr>
+<tr><td><code>蛋触底没有删除</code></td><td><code>地面堆满蛋，越来越多 → 加&quot;删除此克隆体&quot;</code></td></tr>
+<tr><td><code>先隐藏母鸡再克隆</code></td><td><code>蛋全部隐身，舞台上什么都没有 → 改成先克隆再隐藏</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 隐身传染妖</span><span class="mon">🐲 拥堵妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 分工导演：能说清&quot;本体管什么、克隆体管什么&quot;</span><span class="ach">🏅 隐身不误工：本体藏起来还能继续克隆，舞台只见分身</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：先克隆后隐藏，🍔 像先拍合影再离场<br>完成任务就&quot;删除此克隆体&quot;</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>自动下蛋的母鸡</b> ｜ 知识点：先克隆后隐藏、本体指挥克隆、克隆体表演后删除</div>
+<div class="note"><b>场景与目标：</b>母鸡在舞台上方，下方画一片草地。要求：点绿旗后，母鸡隐藏，每隔 1 秒克隆一个蛋；蛋从母鸡位置落到草地上，触地后消失。目标：舞台持续下蛋，但蛋不堆积。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先问&quot;谁管生蛋、谁管落地&quot;，把任务分成本体和克隆体两段。</li><li>本体的绿旗脚本：重复执行（等待 1 秒 → 克隆自己），最后隐藏；注意隐藏放在哪。</li><li>克隆体的启动脚本：移到母鸡的位置，循环下落，触地删除。</li><li>让孩子故意把隐藏放前面试一次，看到蛋全隐形，理解顺序的重要性。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+当绿旗被点击
+重复执行
+  等待 1 秒
+  克隆自己
+隐藏
+当作为克隆体启动时
+  移到 x: 0 y: 150
+  重复执行
+    将 y 坐标增加 -3
+    如果 (y 坐标 &lt; -140) 那么
+      删除此克隆体</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+当绿旗被点击
+重复执行
+  等待 1 秒
+  克隆自己
+隐藏
+当作为克隆体启动时
+  移到 x: 0 y: 150
+  重复执行
+    将 y 坐标增加 -3
+    如果 (y 坐标 &lt; -140) 那么
+      删除此克隆体</div>
+<div class="note"><b>运行结果：</b>点绿旗后，母鸡隐身；每隔 1 秒一个蛋从高处落下，蛋落到草地上立刻消失，舞台上的蛋始终不多于 2 个。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：让蛋落地时切换成&quot;碎蛋&quot;造型再消失，制造&quot;吧唧&quot;掉地上的效果。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db4">你是 Scratch 陪练，我是 10 岁孩子，在学本体和克隆体分工。先考我：本体想隐身只留分身，先克隆还是先隐藏？我答错就让我想想&quot;先拍照再离场&quot;。再问我：隐藏后的本体还能克隆吗？然后让我用文字说清&quot;自动下蛋&quot;的分工：谁负责每隔 1 秒生蛋、谁负责下落、蛋触地做什么。漏掉删除就提醒我&quot;蛋会不会越积越多&quot;。最后给我一个变体：把母鸡换成喷泉，每 0.5 秒喷一个水珠，水珠向上喷到顶再落回。</div>
+<button class="copybtn" onclick='cp(document.getElementById("db4").innerText,this)'>复制这段指令</button>
+</div>
+<div class="lv" id="L5">
+<h2>关卡 5 · 变量在克隆中的运用：一人一份</h2>
+<span class="concept">私有变量 · &quot;仅适用于当前角色&quot;的变量，每个克隆体各有一份</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">能创建&quot;仅适用于当前角色&quot;的变量，让每个克隆体各记各的数据（速度、编号、大小）</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level05.svg" alt="关卡5示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level05.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level05.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>变量有&quot;适用于所有角色&quot;和&quot;仅适用于当前角色&quot;两种；克隆体的数据要选后者</li><li>&quot;仅适用于当前角色&quot;的变量，每个克隆体各有一份，互不干扰</li><li>克隆体会把&quot;克隆那一刻&quot;本体的变量值一起复制走，设初值要看准时机</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 5 个克隆体每只都要记自己的&quot;下落速度&quot;，这个变量应该建哪种？</b>
+<div style="color:#7A6A55;font-size:14px">提示：数据要每个分身分开存，共用一个数够吗？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">建&quot;仅适用于当前角色&quot;的变量，每个克隆体各有一份&quot;下落速度&quot;。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 克隆体 A 把自己的&quot;下落速度&quot;改成 8，克隆体 B 的&quot;下落速度&quot;会变吗？</b>
+<div style="color:#7A6A55;font-size:14px">提示：各记各的，还是大家共用？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">不会变，A 只改自己那份，B 那份不受影响。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. 克隆体出生时，&quot;仅适用于当前角色&quot;的变量是从哪来的？</b>
+<div style="color:#7A6A55;font-size:14px">提示：克隆体是复制的，变量值是不是也跟着复制？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">从本体复制来的，克隆那一刻本体这个变量是几，克隆体就带着几出生。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 私有变量的作用域 ｜ 易失分点：把变量建成&quot;适用于所有角色&quot;，所有分身共用一份</div>
+<div class="note"><b>题面：</b>想让每个克隆体记自己的&quot;下落速度&quot;，下面做法正确的是？A. 新建变量&quot;下落速度&quot;，选&quot;适用于所有角色&quot; B. 新建变量&quot;下落速度&quot;，选&quot;仅适用于当前角色&quot; C. 用积木区自带的&quot;速度&quot;积木 D. 不用变量，把速度直接写死成 5</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：每个分身各存各的数，就要用&quot;仅适用于当前角色&quot;的变量。🍔 像每人一张自己的存折，而不是全班共用一个存折。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子知不知道变量有作用域之分&quot;，选项 A 是最大的坑，因为&quot;适用于所有角色&quot;听起来更通用、更厉害。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把&quot;所有角色都能用&quot;理解成&quot;所有角色共用同一个数&quot;，其实&quot;适用于所有角色&quot;是全项目共用一个变量，谁改了大家都变。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;每个克隆体要不要各记各的&quot;：要各记各的就选&quot;仅适用于当前角色&quot;，每份互相独立。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先想数据是&quot;大家共用&quot;还是&quot;一人一份&quot;；一人一份就建私有变量；再确认勾选的是&quot;仅适用于当前角色&quot;。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 公共存折妖</b><br>失分现象：变量建了&quot;适用于所有角色&quot;，一个分身改全变<br>火眼口诀：一人一份就选私有，🍔 像每人一张存折，不是全班一个</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：我建&quot;下落速度&quot;时选了&quot;适用于所有角色&quot;，结果 5 个分身一起变快。</div>
+<div class="note"><b>我当时怎么想错的：</b>我觉得&quot;所有角色都能用&quot;就是功能更强，没意识到这等于大家共用同一个变量。</div>
+<div class="code">
+每个克隆体要各存各的下落速度 → 数据是一人一份
+创建变量时勾选&quot;仅适用于当前角色&quot;
+这样每个克隆体各有一份&quot;下落速度&quot;，互不影响
+所以选 B。</div>
+<div class="note"><b>防坑口诀：</b>数据一人一份，就建私有变量；共用一份的，改一个全变。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>让 3 个克隆体按编号排成一排，每个克隆体说出自己是第几个。用&quot;仅适用于当前角色&quot;的变量怎么搭？</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>用一个&quot;编号&quot;变量，每个分身启动时都改成同一个数，结果三只都说自己是&quot;3&quot;。</td><td>&quot;编号&quot;建成了&quot;适用于所有角色&quot;，所有分身看到的编号一样。</td><td>克隆顺序搞反，第一个克隆的编号和第二个互换。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>会想到&quot;编号&quot;要一人一份，建&quot;仅适用于当前角色&quot;的变量。</td><td>本体循环克隆前给&quot;编号&quot;加 1，克隆体启动后说&quot;我是第 编号 个&quot;。</td><td>本体忘记在克隆前把&quot;编号&quot;加 1，3 个分身都说自己是第 1 个。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会说清&quot;克隆复制的是克隆那一刻本体私有变量的值&quot;，顺序是：加 1 → 克隆 → 复制编号。</td><td>会搭&quot;重复 3 次（编号增加 1 → 克隆自己）&quot;，克隆体启动说编号，还能用编号算站位。</td><td>忘记私有变量要先&quot;新建&quot;再使用，拖出来的还是共用变量。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会建普通变量 → 会区分&quot;所有角色/当前角色&quot; → 会利用克隆时复制私有变量的时机排编号。</div>
+<div class="note">🍔 私有变量就像每个孩子口袋里的一张号码牌：老师按顺序发牌（1、2、3），每个孩子手里各拿各的，报数时自然各不相同。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>搭程序：本体克隆 3 个分身，每个克隆体启动后说出自己的&quot;编号&quot;（用仅适用于当前角色的变量），并按编号排成横排。试运行后写出三个分身说的话。</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>本体循环里&quot;编号加 1 → 克隆自己&quot;，变量是私有的</code></td><td><code>三个分身分别说&quot;我是第1个&quot;&quot;我是第2个&quot;&quot;我是第3个&quot;</code></td></tr>
+<tr><td><code>编号建成&quot;适用于所有角色&quot;</code></td><td><code>三个分身都说&quot;我是第3个&quot;（都读到最后一个值）</code></td></tr>
+<tr><td><code>忘了在克隆前给编号加 1</code></td><td><code>三个分身都说&quot;我是第1个&quot;</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 公共存折妖</span><span class="mon">🐲 睡过头妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 私有变量师：能说出什么时候该用&quot;仅适用于当前角色&quot;</span><span class="ach">🏅 编号大师：3 个分身编号正确、位置正确</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：一人一份建私有变量，🍔 像一人一张号码牌<br>顺序是&quot;加 1 → 克隆&quot;，别反了</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>排好队的编号分身</b> ｜ 知识点：私有变量（仅适用于当前角色）、克隆时复制变量值、用编号排位</div>
+<div class="note"><b>场景与目标：</b>本体在舞台中央，克隆 3 个分身。要求：用&quot;仅适用于当前角色&quot;的变量&quot;编号&quot;记录每个分身是第几个，克隆体启动后说出自己的编号，并按编号排成横排（第 1 个在左、第 3 个在右）。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先让孩子体会&quot;共用一个变量&quot;的问题：所有分身说出同一个编号。</li><li>教孩子新建变量时勾选&quot;仅适用于当前角色&quot;，说明这是&quot;一人一份&quot;。</li><li>本体的克隆循环里按&quot;编号加 1 → 克隆自己&quot;的顺序搭，讲清克隆会复制那一刻的编号。</li><li>克隆体启动后，用&quot;说 连接(我是第) 和 连接(编号, 个)&quot;报数，并用编号算 x 坐标排位。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+当绿旗被点击
+将 [编号] 设为 0
+重复 3 次
+  将 [编号] 增加 1
+  克隆自己
+当作为克隆体启动时
+  移到 x: 编号 × 60 - 120 y: 0
+  说 连接(我是第) 和 连接(编号, 个)</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+当绿旗被点击
+将 [编号] 设为 0
+重复 3 次
+  将 [编号] 增加 1
+  克隆自己
+当作为克隆体启动时
+  移到 x: 编号 × 60 - 120 y: 0
+  说 连接(我是第) 和 连接(编号, 个) 2 秒</div>
+<div class="note"><b>运行结果：</b>三个分身从左到右排成横排，各自说出&quot;我是第1个&quot;&quot;我是第2个&quot;&quot;我是第3个&quot;，编号互不串。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：让每个分身按下数字键时，只有编号对应的那个分身回应，提示：先比较&quot;按下的键 = 编号&quot;。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db5">你是 Scratch 陪练，我是 10 岁孩子，在学克隆里的私有变量。先考我：5 个分身每人记自己的速度，变量要建哪种？我答错就带我区分&quot;公共存折&quot;和&quot;个人存折&quot;。再考我：克隆前忘了&quot;编号加 1&quot;会怎样？然后让我说清搭编号分身的顺序：设初值、循环里加 1 再克隆、克隆体启动后报数。漏掉哪步就提醒我。最后问我一题：编号建成了&quot;适用于所有角色&quot;，3 个分身会怎么说？
+</div>
+<button class="copybtn" onclick='cp(document.getElementById("db5").innerText,this)'>复制这段指令</button>
+</div>
+<div class="lv" id="L6">
+<h2>关卡 6 · 计时器与闯关判定</h2>
+<span class="concept">计时器 · 用&quot;计时器&quot;和变量做限时闯关，时间到就判定胜负</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">会用&quot;计时器归零&quot;和读取，会做&quot;剩余时间&quot;倒计时，并搭出&quot;时间到&quot;的闯关判定</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level06.svg" alt="关卡6示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level06.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level06.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>&quot;计时器&quot;积木会自动走表，用&quot;计时器归零&quot;清零后重新开始</li><li>倒计时要用自己建的&quot;剩余时间&quot;变量：设初值、等 1 秒、减 1</li><li>闯关判定要分清&quot;过关条件&quot;和&quot;失败条件&quot;，两个都要检查</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 想让游戏从 30 秒开始倒计时，每次减少 1，怎么搭？</b>
+<div style="color:#7A6A55;font-size:14px">提示：先给&quot;剩余时间&quot;设多少？循环里怎么让它变小？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">绿旗后&quot;将 剩余时间 设为 30&quot;，重复执行（等待 1 秒 → 将 剩余时间 增加 -1）。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 剩余时间减到 0 时，闯关游戏通常要做什么？</b>
+<div style="color:#7A6A55;font-size:14px">提示：时间到算赢还是算输？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">判定闯关失败（或时间到结束），停止游戏。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. &quot;计时器&quot;积木和&quot;剩余时间&quot;变量有什么不同？</b>
+<div style="color:#7A6A55;font-size:14px">提示：哪个是 Scratch 自带的、只会向前走的表？哪个是自己控制的？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">&quot;计时器&quot;是 Scratch 自带的秒表，自动涨、只增不减；&quot;剩余时间&quot;是自己造的变量，想怎么变怎么变。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 计时器归零与倒计时逻辑 ｜ 易失分点：用&quot;计时器&quot;当倒计时，忘了设初值或忘了等待</div>
+<div class="note"><b>题面：</b>要做&quot;60 秒倒计时&quot;，下面哪种搭法是对的？A. 将 剩余时间 设为 60 → 重复执行（等待 1 秒 → 将 剩余时间 增加 -1） B. 重复执行（等待 1 秒 → 说 计时器） C. 将 计时器归零 → 重复执行（等待 1 秒 → 将 计时器 增加 -1） D. 将 剩余时间 设为 60 → 重复执行（将 剩余时间 增加 -1）</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：倒计时要&quot;自己的变量 + 设初值 + 每步减 1&quot;，Scratch 的&quot;计时器&quot;只能涨不能减。🍔 像沙漏只有往下漏的沙，你要倒着数就得用自己手画的刻度表。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子懂不懂计时器和变量的区别&quot;，选项 C 是最大的坑，它把&quot;计时器&quot;当成可以减的数。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把&quot;计时器&quot;当成倒计时表，忘了它是只增不减的秒表；还容易漏了&quot;等待 1 秒&quot;，让数字瞬间减到 0。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;倒计时的三大件&quot;：设初值、等 1 秒、减 1，缺一不可；&quot;计时器&quot;只用来清零后顺数计时。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先分清用的是&quot;自带计时器&quot;还是&quot;自建变量&quot;，倒计时必须用变量；再查有没有设初值；最后查循环里有没有&quot;等待 + 减 1&quot;。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 秒表妖</b><br>失分现象：用 Scratch 的计时器当倒计时，它只会越走越大<br>火眼口诀：倒计时用自己建的变量，🍔 像秒表只能正着走，要倒着数得自己写</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：我选了 C，把&quot;计时器归零&quot;后想让它每 1 秒减 1，结果它越数越大。</div>
+<div class="note"><b>我当时怎么想错的：</b>我把&quot;计时器&quot;当成能加能减的变量，忘了它是 Scratch 自带的、只会向前走的秒表。</div>
+<div class="code">
+倒计时要用自己建的&quot;剩余时间&quot;变量：
+将 剩余时间 设为 60
+重复执行（等待 1 秒 → 将 剩余时间 增加 -1）
+所以选 A。</div>
+<div class="note"><b>防坑口诀：</b>秒表只会往前跑，倒计时要自己造；设初值、等一秒、减一分，三大件不能少。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>做一关&quot;30 秒内接住 10 个苹果&quot;，接满 10 个过关，时间到没接满失败。闯关判定怎么写？</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>只做接苹果，完全不看时间，也没判定输赢。</td><td>只有&quot;碰到就加 1&quot;，没有&quot;剩余时间&quot;和结果判断。</td><td>接到 10 个不会停，继续无限接下去。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>会做倒计时，时间到判断&quot;接住的苹果够不够 10 个&quot;。</td><td>会写：剩余时间 = 30 → 重复执行（剩余时间减 1 → 如果 接住数 = 10 说 过关 停止全部脚本 → 如果 剩余时间 = 0 说 失败 停止全部脚本）。</td><td>两个判定顺序写反，时间到了接满也说失败。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会把判定收敛到一个&quot;游戏状态&quot;变量（进行中、过关、失败），或集中在一个重复执行里用&quot;否则&quot;分支，逻辑更清爽。</td><td>用&quot;重复执行直到（剩余时间 = 0 或 接住数 = 10）&quot;，结束后再统一判断输赢，代码更短。</td><td>用&quot;停止 全部脚本&quot;一刀切，把声音、特效也停了，收尾做得粗糙。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会做倒计时 → 会加两个判定分支 → 会用&quot;重复执行直到&quot;收敛状态，结束后统一判输赢。</div>
+<div class="note">🍔 闯关判定就像考试交卷：铃响（时间到）或做完（接满 10 个）都要停笔；是先做完还是先响铃，决定了你过关还是挂科。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>搭&quot;30 秒接苹果&quot;闯关：倒计时 30 秒，接到 10 个苹果说&quot;过关&quot;，时间到没接满说&quot;失败&quot;。写出你搭的判定顺序。</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>30 秒内接满 10 个</code></td><td><code>中途说&quot;过关&quot;，倒计时停止</code></td></tr>
+<tr><td><code>时间到只接了 6 个</code></td><td><code>说&quot;失败&quot;，游戏结束</code></td></tr>
+<tr><td><code>判定顺序写反（先判时间到再判接满）</code></td><td><code>时间到前先判时间，接满 10 个也被判失败 → 要改成先判过关再判失败</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 秒表妖</span><span class="mon">🐲 睁眼瞎妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 倒计时钟表匠：30 秒倒计时一分不差</span><span class="ach">🏅 判定判官：过关、失败两种结果都能正确触发</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：倒计时用变量加设初值，🍔 像自己画刻度表<br>每次接住后检查&quot;够 10 个了吗&quot;</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>30 秒接苹果闯关</b> ｜ 知识点：计时器归零、倒计时三大件、过关与失败判定</div>
+<div class="note"><b>场景与目标：</b>舞台上，小猫在底部左右移动接苹果，苹果从上方落下。要求：游戏限时 30 秒；接到 10 个苹果立即说&quot;过关&quot;并结束；时间到没接满 10 个说&quot;失败&quot;。游戏开始前先&quot;计时器归零&quot;，结束后显示实际用时。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先做倒计时三件套：设 30、等 1 秒、减 1，让&quot;剩余时间&quot;显示在舞台上。</li><li>接到苹果就&quot;接住数 增加 1&quot;，每次增加后立刻检查&quot;够 10 个了吗&quot;。</li><li>在同一个重复执行里加第二个检查：&quot;剩余时间 = 0&quot;时判失败。</li><li>用&quot;停止 全部脚本&quot;结束游戏，提醒孩子注意两个停止要分别放对位置。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+当绿旗被点击
+将 [剩余时间] 设为 30
+将 [接住数] 设为 0
+计时器归零
+重复执行
+  等待 1 秒
+  将 [剩余时间] 增加 -1
+  如果 (接住数 = 10) 那么
+    说 过关
+    停止 全部脚本
+  如果 (剩余时间 = 0) 那么
+    说 失败
+    停止 全部脚本</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+当绿旗被点击
+将 [剩余时间] 设为 30
+将 [接住数] 设为 0
+计时器归零
+重复执行
+  等待 1 秒
+  将 [剩余时间] 增加 -1
+  如果 (接住数 = 10) 那么
+    说 过关 2 秒
+    停止 全部脚本
+  如果 (剩余时间 = 0) 那么
+    说 失败 2 秒
+    停止 全部脚本</div>
+<div class="note"><b>运行结果：</b>30 秒内接到 10 个苹果时，小猫立刻说&quot;过关&quot;，倒计时停住；若 30 秒只接到几个苹果，剩余时间到 0，小猫说&quot;失败&quot;。两种结果只有一个会触发。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：过关时显示&quot;用时 xx 秒&quot;（用&quot;计时器&quot;读出实际用时），并要求用时越短得分越高。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db6">你是 Scratch 陪练，我是 10 岁孩子，在学计时器和闯关判定。先考我：Scratch 自带的&quot;计时器&quot;是越走越大还是能倒着减？倒计时应该用什么？我答错就带我分清&quot;秒表&quot;和&quot;自己画的刻度表&quot;。再让我说倒计时的三大件。然后让我说&quot;30 秒接 10 个苹果&quot;的判定顺序：先判什么、再判什么、怎么结束。顺序说反要提醒我。最后给我出个变体：20 秒答对 5 道题就过关。
+</div>
+<button class="copybtn" onclick='cp(document.getElementById("db6").innerText,this)'>复制这段指令</button>
+</div>
+<div class="lv" id="L7">
+<h2>关卡 7 · 关卡切换：闯过一关进下一关</h2>
+<span class="concept">关卡切换 · 用&quot;关卡&quot;变量记录进度，闯过一关就自动进下一关</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">会用&quot;关卡&quot;变量记录当前关卡，按关卡改变难度，实现&quot;闯过一关进下一关&quot;</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level07.svg" alt="关卡7示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level07.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level07.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>用&quot;关卡&quot;变量记住现在在第几关，从第 1 关开始</li><li>过关后让&quot;关卡 增加 1&quot;，再用&quot;如果 关卡 = 2 那么&quot;切换不同的玩法和难度</li><li>每关开始前要把本关的数据重置（剩余时间、得分、接住数），不然会串关</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 游戏要记录&quot;现在在第几关&quot;，用什么来记？</b>
+<div style="color:#7A6A55;font-size:14px">提示：需要一边玩一边变化、又能被读出来的数，是什么？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">用一个变量&quot;关卡&quot;，绿旗后先设为 1。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 第 1 关接 10 个苹果过关，第 2 关接 15 个。怎么让第 2 关要求变高？</b>
+<div style="color:#7A6A55;font-size:14px">提示：把&quot;要接几个&quot;和&quot;关卡&quot;挂钩。</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">用&quot;目标数&quot;变量：第 1 关设 10，过关进第 2 关时设 15；或用&quot;如果 关卡 = 2 那么 将 目标数 设为 15&quot;。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. 从第 1 关进入第 2 关时，上一关的&quot;剩余时间&quot;和&quot;接住数&quot;要不要重置？为什么？</b>
+<div style="color:#7A6A55;font-size:14px">提示：如果带着上一关的数据进入下一关，会发生什么？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">要重置。&quot;接住数&quot;不清零的话，新一关开局就满足过关条件；&quot;剩余时间&quot;不补满的话，新一关立刻结束。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 过关切换与关卡数据重置 ｜ 易失分点：过关后忘记重置数据，新一关带着旧数据开跑</div>
+<div class="note"><b>题面：</b>第 1 关接 10 个苹果过关后，第 2 关要重新开始。下面哪一步不能省？A. 将 关卡 增加 1 B. 把 接住数 重新设为 0 C. 播放通关音效 D. 把小猫移到舞台底部</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：切换关卡不只是&quot;关卡加 1&quot;，还要把旧数据清掉，新一关才能干净开张。🍔 像换新赛道前要先清掉上一场的车，不然新比赛乱成一团。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子懂不懂状态重置&quot;，选项 B 是最容易被忽略的，因为&quot;关卡加 1&quot;看起来就够了。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把&quot;关卡加 1&quot;当成切换的全部，忘了接住数、剩余时间这些数据还停在上一关结束时的状态。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;进入新关卡先重置&quot;：关卡加 1 的同时，接住数归 0、剩余时间回到满值，才叫&quot;重新开始&quot;。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先找&quot;过关&quot;的分支在哪，看它有没有把&quot;关卡&quot;加 1；再检查进入新关卡时数据有没有重置；最后想旧关卡的分身要不要清理。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 拖泥带水妖</b><br>失分现象：新一关带着上一关的接住数和时间开跑<br>火眼口诀：进新关先清零重设，🍔 像换新赛道先清场</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：我过关后只加了&quot;将 关卡 增加 1&quot;，结果第 2 关刚开局就说&quot;过关&quot;了。</div>
+<div class="note"><b>我当时怎么想错的：</b>我忘了上一关已经接满了 10 个，接住数还停在 10，新一关开局就满足过关条件。</div>
+<div class="code">
+过关后要做三件事：
+将 关卡 增加 1（进入下一关）
+将 接住数 设为 0（清掉旧成绩）
+将 剩余时间 设为 30（补满新时间）
+所以最不能省的、选项里的正确项是 B。</div>
+<div class="note"><b>防坑口诀：</b>关卡加一不完整，数据清零才开新；接住数、剩余时间，进关前都重设。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>做两关闯关：第 1 关 30 秒接 10 个苹果，第 2 关 20 秒接 15 个。怎么搭出&quot;关卡切换&quot;？</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>搭完第 1 关就停手，不知道怎么做第 2 关。</td><td>把两关的脚本各写一份，用绿旗分两次运行，不是连贯闯关。</td><td>想用&quot;当按下 1 键&quot;手动切关，忘了要自动过关切换。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>会用&quot;关卡&quot;变量区分玩法，第 1 关结束自动把&quot;关卡&quot;变成 2。</td><td>会写&quot;如果 关卡 = 1 那么 目标数 10、时间 30；如果 关卡 = 2 那么 目标数 15、时间 20&quot;。</td><td>关卡加 1 后没重置接住数，第 2 关一进场就过关。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会把&quot;关卡&quot;和&quot;目标数、时间&quot;配成一张表，还会用广播&quot;进入下一关&quot;统一重置，加第 3 关只需加一行。</td><td>会用&quot;如果 关卡 = 1/2/3 那么&quot;统一设置目标和时间，再调用&quot;重置关卡&quot;的公共部分，扩展方便。</td><td>关卡数不设上限，第 99 关也会出现，缺少&quot;全部通关&quot;的最终判定。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会做单关 → 会用关卡变量切换玩法 → 会把难度配成表、广播重置、设置通关终点。</div>
+<div class="note">🍔 关卡切换就像游乐园的关卡通道：玩完第 1 关，闸机（过关判定）放你到第 2 关，但第 2 关的碰碰车要重新发车、重新计时，不能开着第 1 关的车进场。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>搭两关闯关：第 1 关&quot;接 10 个苹果&quot;，第 2 关&quot;接 15 个苹果&quot;，过关自动进下一关，两关都过了说&quot;全部通关&quot;。写出两关之间的数据重置内容。</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>第 1 关接满 10 个</code></td><td><code>关卡变 2，接住数清零，剩余时间重新设为满值</code></td></tr>
+<tr><td><code>第 2 关接满 15 个</code></td><td><code>关卡变 3，超过总关数，说&quot;全部通关&quot;</code></td></tr>
+<tr><td><code>过关后忘了重置接住数</code></td><td><code>第 2 关开局接住数还是 10，差 5 个就过关 → 要清零</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 拖泥带水妖</span><span class="mon">🐲 无底洞妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 关卡设计师：两关难度不同、自动衔接</span><span class="ach">🏅 清零小管家：每关开局数据都是新的，从不串关</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：进关先重置接住数、剩余时间，🍔 像换赛道先清场<br>超过总关数就&quot;停止全部脚本&quot;或说&quot;全部通关&quot;</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>两关接苹果闯关</b> ｜ 知识点：关卡变量、难度随关卡变化、过关重置数据、全部通关判定</div>
+<div class="note"><b>场景与目标：</b>接苹果闯关游戏要做两关：第 1 关 30 秒内接 10 个苹果过关；第 2 关 20 秒内接 15 个苹果。过关自动进下一关，两关都通过说&quot;全部通关&quot;。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先建&quot;关卡、目标数、剩余时间、接住数&quot;4 个变量，想清各自的作用。</li><li>绿旗后按&quot;关卡 = 1&quot;设置：目标数 10、剩余时间 30。</li><li>过关分支里做三件事：关卡加 1、重置接住数和剩余时间、再用&quot;如果 关卡 = 2 那么&quot;设置第 2 关的目标和时间。</li><li>加上&quot;如果 关卡 = 3 那么 说 全部通关 停止全部脚本&quot;，给游戏一个终点。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+当绿旗被点击
+将 [关卡] 设为 1
+将 [接住数] 设为 0
+将 [剩余时间] 设为 30
+将 [目标数] 设为 10
+重复执行
+  如果 (接住数 = 目标数) 那么
+    将 [关卡] 增加 1
+    将 [接住数] 设为 0
+    将 [剩余时间] 设为 30
+    如果 (关卡 = 2) 那么
+      将 [目标数] 设为 15
+    如果 (关卡 = 3) 那么
+      说 全部通关
+      停止 全部脚本</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+当绿旗被点击
+将 [关卡] 设为 1
+将 [接住数] 设为 0
+将 [剩余时间] 设为 30
+将 [目标数] 设为 10
+重复执行
+  如果 (接住数 = 目标数) 那么
+    将 [关卡] 增加 1
+    将 [接住数] 设为 0
+    将 [剩余时间] 设为 30
+    如果 (关卡 = 2) 那么
+      将 [目标数] 设为 15
+    如果 (关卡 = 3) 那么
+      说 全部通关 2 秒
+      停止 全部脚本</div>
+<div class="note"><b>运行结果：</b>第 1 关接满 10 个自动进入第 2 关，第 2 关接满 15 个后关卡变 3，小猫说&quot;全部通关&quot;并结束；两关之间接住数和剩余时间都被重置。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：用&quot;广播 进入下一关&quot;统一做重置，并把难度改成 3 关，第 3 关苹果下落速度更快。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db7">你是 Scratch 陪练，我是 10 岁孩子，在学关卡切换。先考我：从第 1 关进第 2 关，除了&quot;关卡加 1&quot;，还一定要重置哪两个数据？我答漏就带我回想&quot;新一关开局接住数还是 10 会怎样&quot;。再让我说说怎么让第 2 关要求变高（目标数变 15）。然后让我用文字描述两关闯关的整体流程。最后问我一题：全部通关的判定条件是什么？
+</div>
+<button class="copybtn" onclick='cp(document.getElementById("db7").innerText,this)'>复制这段指令</button>
+</div>
+<div class="lv" id="L8">
+<h2>关卡 8 · 小结项目：躲避陨石闯关</h2>
+<span class="concept">综合 · 把克隆、独立运动、私有变量、计时、关卡切换全部用进一个闯关游戏</span>
+<div class="goal" style="background:#FFF3D6;border-radius:10px;padding:9px 12px;font-size:14.5px;margin:10px 0">独立完成&quot;躲避陨石&quot;闯关小游戏：飞船躲避克隆陨石、限时通关、判定输赢</div>
+<div style="text-align:center;margin:10px 0"><img src="img/level08.svg" alt="关卡8示意图" style="max-width:100%;border:2px solid #EADFB8;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)"></div>
+<div class="media">
+<div class="aud"><div class="mlabel">🎬 讲解视频</div><video controls preload="none"><source src="media/level08.mp4" type="video/mp4"></video></div>
+<div class="aud"><div class="mlabel">🎧 讲解音频</div><audio controls preload="none" src="media/level08.mp3"></audio></div>
+</div>
+<h3>🎯 知识点</h3><ul class="sent"><li>陨石用&quot;克隆自己&quot;批量生成，每个克隆体用私有变量存自己的下落速度</li><li>飞船用左右键移动，碰到陨石扣命或判失败</li><li>闯关判定 = 时间到过关 + 碰到陨石失败，失败优先，判完就停止</li></ul>
+<div class="skill"><h4>✏️ 关键练习</h4>
+<div style="margin-bottom:10px"><b>1. 陨石要不断落下来，用什么积木让陨石源源不断出现？</b>
+<div style="color:#7A6A55;font-size:14px">提示：大量一样的角色，怎么批量生成？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">陨石本体隐藏，用&quot;重复执行（等待 0.5 秒 → 克隆自己）&quot;源源不断克隆。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>2. 飞船左右移动，改哪个坐标？</b>
+<div style="color:#7A6A55;font-size:14px">提示：左右是横着动，横坐标是 x 还是 y？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">改 x 坐标：按右键&quot;将 x 坐标增加 10&quot;，按左键&quot;将 x 坐标增加 -10&quot;。</div></div></details>
+</div>
+<div style="margin-bottom:10px"><b>3. 飞船碰到陨石要判失败，用什么积木判断？</b>
+<div style="color:#7A6A55;font-size:14px">提示：角色碰角色用什么积木？</div>
+<details><summary>参考答案</summary><div class="body"><div class="code">&quot;碰到 陨石 ?&quot;积木，配合&quot;如果 碰到 陨石 那么&quot;判定。</div></div></details>
+</div>
+</div>
+<div class="skill fire"><h4>🔥 火眼金睛 · 真题拆解<span class="badge">出题人视角</span></h4>
+<div class="note"><b>考试元数据：</b>来源 仿题·非官方真题，仅供参考 ｜ 分值 10分 ｜ 主考点 综合判定：碰到陨石与时间到同时发生时谁优先 ｜ 易失分点：飞船明明过关了，还被判失败，或两个结果一起喊</div>
+<div class="note"><b>题面：</b>躲避陨石躲过 30 秒就过关，飞船在最后 1 秒同时碰到陨石。正确的判定顺序是？A. 先判碰到陨石 → 失败 B. 先判时间到 → 过关 C. 两个都不判，继续玩 D. 随机判一个</div>
+<table><tr><th>五维拆解</th><th>内容</th></tr>
+<tr><td><b>考点定位</b></td><td>考点就一句：判定要有先后，通常&quot;失败优先&quot;：先检查有没有碰到陨石，再检查时间到没到。🍔 像游泳比赛先看有没有犯规，犯规在先，游得再快也取消成绩。</td></tr>
+<tr><td><b>出题人思路</b></td><td>出题人想考&quot;孩子会不会处理两个条件同时成立&quot;，答案取决于设计，但必须明确顺序，不能两个都放过。</td></tr>
+<tr><td><b>知识混淆点</b></td><td>孩子常把判定写成&quot;时间到过关&quot;在前，结果最后 1 秒被陨石撞了还说过关，两个结果同时冒出来。</td></tr>
+<tr><td><b>考核重点+区分</b></td><td>得分点在&quot;判定唯一&quot;：先做失败判定（碰到就停止），再做过关判定（时间到就停止），每个条件触发后都停止脚本，不会同时触发。</td></tr>
+<tr><td><b>同类题路径</b></td><td>同类题三步走：先列有哪些结束条件（失败、过关），再定先后顺序（通常失败优先），最后每个条件触发后都要&quot;停止 全部脚本&quot;。</td></tr>
+</table>
+<div class="note"><b>陷阱妖 · 双喜临门妖</b><br>失分现象：时间到和碰到陨石同时发生，两句结果一起喊<br>火眼口诀：失败优先判，判完就停止，🍔 像先看犯规再看成绩</div>
+<details><summary>🎭 演错训练：我故意做错了，你来当小老师</summary><div class="body">
+<div class="note">🎭 演错：最后 1 秒我又碰到陨石又时间到，程序先喊&quot;过关&quot;，再喊&quot;失败&quot;，舞台乱成一团。</div>
+<div class="note"><b>我当时怎么想错的：</b>我把两个判定并列写，没有先后，也没想到它们会同时成立。</div>
+<div class="code">
+正确的顺序（失败优先）：
+先检查：如果 碰到 陨石 那么 → 说 失败 → 停止 全部脚本
+再检查：如果 剩余时间 = 0 那么 → 说 过关 → 停止 全部脚本
+最后 1 秒即使时间也到，也会先被&quot;碰到陨石&quot;抓住，结果唯一
+所以选 A（失败优先）。</div>
+<div class="note"><b>防坑口诀：</b>碰到陨石先判败，时间到了再判胜；两个条件都成立，只留一个结果。
+</div>
+</div></details></div>
+<div class="skill gold"><h4>🪄 金箍棒 · 三级思路对比<span class="badge">教</span></h4>
+<div class="note"><b>题目：</b>设计&quot;躲避陨石&quot;闯关游戏的整体脚本。列出飞船、陨石、判定三部分的积木分工。</div>
+<table><tr><th>水平</th><th>思路</th><th>代码风格</th><th>典型误区</th></tr>
+<tr><td><b>🟢 初学者</b></td><td>一上来就拖陨石克隆，忘了飞船怎么动、怎么判定，做完一团乱。</td><td>只有陨石在乱掉，飞船不会动，也没有输赢判定。</td><td>飞船和陨石共用一个角色，飞船被克隆了一大堆。</td></tr>
+<tr><td><b>🟡 进阶者</b></td><td>会先分三部分：陨石（克隆下落）、飞船（按键移动）、判定（碰陨石、时间到）。</td><td>陨石用&quot;当作为克隆体启动时&quot;下落，飞船用按键移动，判定写在飞船的绿旗脚本里。</td><td>判定只写了失败，忘了&quot;躲过 30 秒就过关&quot;，玩家只能一直躲没有终点。</td></tr>
+<tr><td><b>🔴 精通者</b></td><td>会用&quot;游戏状态&quot;变量管理&quot;进行中、过关、失败&quot;，还会用关卡变量做多关，每关难度递增。</td><td>陨石私有速度、飞船碰到陨石设状态失败、剩余时间到 0 设状态过关，广播通知全场收尾，结构清晰。</td><td>收尾时忘了&quot;删除 此克隆体&quot;清理陨石，界面乱。</td></tr>
+</table>
+<div class="note"><b>水平跃迁路径：</b>会做单一效果 → 会分三部分分工 → 会用状态变量管理输赢、做多关、干净收尾。</div>
+<div class="note">🍔 综合项目就像做一顿完整的晚餐：克隆陨石是&quot;洗菜切菜&quot;，飞船移动是&quot;炒菜&quot;，判定是&quot;尝味道放盐&quot;，关卡切换是&quot;上菜顺序&quot;。少了哪一步，晚餐都不完整。
+</div>
+</div>
+<div class="skill mirror"><h4>🪞 照妖镜 · 真跑批改与测试用例<span class="badge">练+查</span></h4>
+<div class="note"><b>练习题：</b>搭&quot;躲避陨石&quot;第 1 关：飞船用左右键移动，陨石每 0.5 秒克隆一个并下落，飞船碰到陨石说&quot;失败&quot;，躲过 30 秒说&quot;过关&quot;。写出：你做了哪几部分脚本？各自在哪个帽子下面？</div>
+<table><tr><th>输入</th><th>期望输出</th></tr>
+<tr><td><code>陨石本体隐藏，循环克隆，克隆体启动后下落</code></td><td><code>舞台源源不断出现下落陨石</code></td></tr>
+<tr><td><code>飞船碰到陨石</code></td><td><code>说&quot;失败&quot;，停止全部脚本</code></td></tr>
+<tr><td><code>剩余时间到 0 而飞船还活着</code></td><td><code>说&quot;过关&quot;，停止全部脚本</code></td></tr>
+</table>
+<div><b>可能照出的妖怪：</b><br><span class="mon">🐲 双喜临门妖</span><span class="mon">🐲 幽灵陨石妖</span></div>
+<div style="margin-top:8px"><span class="ach">🏅 闯关设计师：独立完成完整的躲避陨石第 1 关</span><span class="ach">🏅 状态总控：失败、过关两种结果清晰不打架</span></div>
+<div class="note" style="margin-top:8px">妖怪速记：失败判定在前，判完就停止，🍔 像先看犯规再看成绩<br>触底删除克隆体、本体隐藏</div>
+</div>
+<div class="skill card"><h4>🃏 生题库 · 六部分教学卡片<span class="badge">备课/作业</span></h4>
+<div class="note"><b>躲避陨石闯关</b> ｜ 知识点：克隆生成陨石、私有速度下落、飞船按键移动、失败与过关判定</div>
+<div class="note"><b>场景与目标：</b>完整项目：飞船（小猫）在舞台底部用左右键移动；陨石每隔 0.5 秒从上方克隆一个并随机下落（私有速度）；飞船碰到陨石说&quot;失败&quot;，躲过 30 秒说&quot;过关&quot;。舞台左上角显示&quot;剩余时间&quot;。</div>
+<b>引导思路（不泄露完整代码）：</b><ol class="sent"><li>先让孩子画出流程图：陨石怎么做、飞船怎么动、输赢怎么判，三大块分开想。</li><li>陨石部分：本体隐藏加循环克隆，克隆体启动后随机位置、私有速度下落、触底删除。</li><li>飞船部分：重复执行里判断左右键，改 x 坐标；同时做两个判定（碰陨石失败在前、时间到过关在后）。</li><li>收尾：两个判定都要&quot;停止 全部脚本&quot;，先测失败再测过关，确保结果唯一。</li></ol>
+<b>语法框架（? 处自己填）：</b>
+<div class="code">
+（陨石角色）
+当绿旗被点击
+隐藏
+重复执行
+  等待 0.5 秒
+  克隆自己
+当作为克隆体启动时
+  将 [下落速度] 设为 随机取数(2) 到 (6)
+  移到 x: 随机取数(-220) 到 (220) y: 170
+  显示
+  重复执行
+    将 y 坐标增加 -下落速度
+    如果 (y 坐标 &lt; -170) 那么 删除此克隆体
+（飞船角色）
+当绿旗被点击
+将 [剩余时间] 设为 30
+重复执行
+  如果 按下 左键 那么 将 x 坐标增加 -10
+  如果 按下 右键 那么 将 x 坐标增加 10
+  如果 (碰到 陨石 ?) 那么 说 失败 停止 全部脚本
+  如果 (剩余时间 = 0) 那么 说 过关 停止 全部脚本</div>
+<details><summary>完整程序 + 运行结果</summary><div class="body">
+<div class="code">
+（陨石角色）
+当绿旗被点击
+隐藏
+重复执行
+  等待 0.5 秒
+  克隆自己
+当作为克隆体启动时
+  将 [下落速度] 设为 随机取数(2) 到 (6)
+  移到 x: 随机取数(-220) 到 (220) y: 170
+  显示
+  重复执行
+    将 y 坐标增加 -下落速度
+    如果 (y 坐标 &lt; -170) 那么 删除此克隆体
+（飞船角色）
+当绿旗被点击
+将 [剩余时间] 设为 30
+重复执行
+  如果 按下 左键 那么 将 x 坐标增加 -10
+  如果 按下 右键 那么 将 x 坐标增加 10
+  如果 (碰到 陨石 ?) 那么 说 失败 2 秒 停止 全部脚本
+  如果 (剩余时间 = 0) 那么 说 过关 2 秒 停止 全部脚本</div>
+<div class="note"><b>运行结果：</b>点绿旗后：陨石每 0.5 秒从天而降、速度各异、触底消失；飞船随左右键移动；碰到陨石立刻说&quot;失败&quot;并停止；躲满 30 秒且没被碰到时说&quot;过关&quot;并停止。两种结果互不冲突。</div>
+</div></details>
+<div class="note"><b>扩展挑战：</b>增加挑战：给游戏加&quot;生命值&quot;系统（被陨石碰到扣 1 条命，扣完才失败），并加第 2 关（陨石更快、数量更多）。</div>
+</div>
+<h3>🤖 豆包陪练指令（本关）</h3>
+<div class="prompt" id="db8">你是 Scratch 陪练，我是 10 岁孩子，在做&quot;躲避陨石&quot;综合项目。先考我：这个项目分成哪几大部分？我答不全就提示：陨石、飞船、判定。再问我：陨石为什么要用&quot;当作为克隆体启动时&quot;？然后让我说说判定的先后顺序和为什么。最后让我自查三件事：本体隐藏了吗、克隆体触底删除了吗、两个结束条件都会停止脚本吗？漏了就逐个提醒我。</div>
+<button class="copybtn" onclick='cp(document.getElementById("db8").innerText,this)'>复制这段指令</button>
+</div>
+<div class="sect" id="enlighten"><h2>🧩 分龄启蒙活动设计（家长/教师可直接照做）</h2>
+<div class="note"><b>适用年龄：</b>10岁 ｜ <b>活动目标：</b>不碰电脑先学会&quot;克隆是一次复制、分身各带各的数、先克隆再隐藏&quot;三条核心规则，给上机搭积木铺路</div>
+<div class="note"><b>核心计算思维概念：</b>克隆（复制一个一模一样的分身）、分工（本体管生、克隆体管表演）（每次最多 2 个，避免认知超载）</div>
+<table><tr><th>环节</th><th>时长</th><th>做什么</th><th>怎么说（可直接复述）</th><th>看什么</th></tr>
+<tr><td><b>情境引入</b></td><td>2分钟</td><td>拿一张白纸复印出两张同样的纸，问&quot;原稿还在吗？多出来的那张是谁？&quot;</td><td>复印一次多一张，原稿有没有消失？</td><td>看孩子能不能说出&quot;本体 + 克隆体&quot;</td></tr>
+<tr><td><b>核心概念演示</b></td><td>5分钟</td><td>用贴纸演示：在图纸上画一只小猫，再描出 4 只小猫贴纸当分身；给每只分身贴一个不同数字当&quot;私有变量&quot;</td><td>每只分身手里的数字一样不一样？改一只会不会影响别的？</td><td>看孩子能不能说出&quot;各带各的数&quot;</td></tr>
+<tr><td><b>动手操作</b></td><td>15分钟</td><td>孩子在纸上排&quot;先克隆再隐藏&quot;的顺序卡，并给 5 个分身贴速度数字（1 到 5），再按速度快慢给分身排队</td><td>先藏起来再描分身，描出的分身看得见吗？</td><td>看孩子能不能排出&quot;克隆在前、隐藏在后&quot;</td></tr>
+<tr><td><b>调试与分享</b></td><td>8分钟</td><td>故意把一张分身贴纸叠在原稿位置上，让孩子发现&quot;分身出生挤在本体身上&quot;，讨论出生后要先移到哪</td><td>分身出生站在哪？要先做什么？</td><td>看孩子能不能说出&quot;移到别处再显示&quot;</td></tr>
+</table>
+<h3>家庭延伸</h3><ul class="sent"><li>家里用复印机或手描给孩子演示&quot;复制一张，原稿还在&quot;，再聊&quot;复印出的纸会不会自己走路&quot;引出分身要有自己的脚本</li><li>玩&quot;排排队&quot;游戏：全家每人发一张号码牌，各记各的号，让孩子体会&quot;一人一份&quot;和&quot;共用一份&quot;的区别</li></ul>
+<h3>怎么评估（看行为，不打分）</h3><ul class="sent"><li>观察孩子能否分清&quot;本体&quot;和&quot;克隆体&quot;，并能说出&quot;克隆一次多一个&quot;</li><li>观察孩子能否排出&quot;先克隆再隐藏&quot;的顺序，并说出&quot;隐藏了还能继续克隆&quot;</li></ul>
+<div class="note"><b>屏幕时间提示：</b>本次活动零屏幕，无需护眼提示</div>
+</div>
+<div class="sect" id="prompts"><h2>🤖 豆包 AI 陪练指令包</h2>
+<h3>通用指令 1</h3><div class="prompt" id="g1">出题陪练：每关结束时，根据本关 KEY 随机出 3 道小题考孩子，答错只给提示不给答案，让孩子自己说出正确结论。</div>
+<button class="copybtn" onclick='cp(document.getElementById("g1").innerText,this)'>复制</button>
+<h3>通用指令 2</h3><div class="prompt" id="g2">代码批改：孩子用文字描述积木序列后，你逐块批注&quot;这块做什么、有什么风险&quot;，只批注不改写，让孩子自己改。</div>
+<button class="copybtn" onclick='cp(document.getElementById("g2").innerText,this)'>复制</button>
+<h3>通用指令 3</h3><div class="prompt" id="g3">报错翻译：孩子说&quot;程序不听话&quot;时，先问现象是什么（几个角色在动、说了什么话、谁消失了），再把现象翻译成&quot;克隆顺序错/帽子放错/私有变量建错&quot;等可查的问题。</div>
+<button class="copybtn" onclick='cp(document.getElementById("g3").innerText,this)'>复制</button>
+<h3>通用指令 4</h3><div class="prompt" id="g4">三级思路讲解：遇到同一道题，先问孩子&quot;先想到什么&quot;，再按初学者、进阶者、精通者三种解法各讲一遍，让孩子选自己能懂的那种。</div>
+<button class="copybtn" onclick='cp(document.getElementById("g4").innerText,this)'>复制</button>
+<h3>通用指令 5</h3><div class="prompt" id="g5">错题整理：孩子答错后，把题干、孩子的答案、错因（对应哪个妖怪）记下来，每 2 关结束前用旧题再考一次。</div>
+<button class="copybtn" onclick='cp(document.getElementById("g5").innerText,this)'>复制</button>
+<h3>通用指令 6</h3><div class="prompt" id="g6">项目挑战：通关后给孩子一个加一点难度的变体任务（加生命值、多关卡、陨石更快），只给目标不给步骤，引导孩子自己拆解。</div>
+<button class="copybtn" onclick='cp(document.getElementById("g6").innerText,this)'>复制</button>
+</div>
+<footer>本产品由 AI 辅助整理、人工审校，仅供购买者个人学习使用，请勿转售或外传。</footer>
+</div><div class="toast" id="toast"></div>
+
+<script>
+function cp(t,btn){navigator.clipboard.writeText(t).then(()=>{
+  const o=btn.textContent;btn.textContent="已复制 ✓";setTimeout(()=>btn.textContent=o,1500);
+});}
+</script>
+
+</body></html>

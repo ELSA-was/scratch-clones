@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<style>
+text{font-family:sans-serif}
+.big{font-size:21px;font-weight:bold;fill:#2C2417}
+.mid{font-size:17px;font-weight:bold;fill:#2C2417}
+.sm{font-size:14px;fill:#2C2417}
+.sm2{font-size:12px;font-weight:bold;fill:#2C2417}
+.blk{font-size:13px;font-weight:bold;fill:#2C2417;text-anchor:middle}
+.gw{animation:gw 3s ease-in-out infinite}
+@keyframes gw{0%,100%{opacity:.4}50%{opacity:.75}}
+.dot{animation:dd 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.dot2{animation-delay:.65s}
+.dot3{animation-delay:1.3s}
+@keyframes dd{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.35);opacity:.5}}
+</style>
+<defs>
+<g id="cat">
+<path d="M-16 14 q-20 -2 -18 -20" fill="none" stroke="#2C2417" stroke-width="3.5" stroke-linecap="round"/>
+<ellipse cx="-7" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="11" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="0" cy="12" rx="23" ry="18" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<circle cx="3" cy="-13" r="17" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="-8,-25 -12,-39 1,-31" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<polygon points="9,-29 19,-39 21,-23" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<circle cx="1" cy="-15" r="2.8" fill="#2C2417"/>
+<circle cx="12" cy="-15" r="2.8" fill="#2C2417"/>
+<polygon points="5,-8 11,-8 8,-4" fill="#FF8FA3" stroke="#2C2417" stroke-width="2" stroke-linejoin="round"/>
+<path d="M2 -2 q6 5 12 1" fill="none" stroke="#2C2417" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<path id="hat210" d="M12 0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+<path id="cmd210" d="M12 0 H88 V-9 H122 V0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+</defs>
+<rect width="640" height="360" fill="#F4EDE0"/>
+<text class="big" x="24" y="32">第2关 · 彩色的克隆小猫</text>
+<text class="sm" x="24" y="54">「当作为克隆体启动时」= 每个分身出生后各自执行的专属脚本</text>
+<rect x="24" y="74" width="330" height="230" rx="10" fill="#FFFFFF" stroke="#2C2417" stroke-width="4"/>
+<g class="gw" transform="translate(92,112) scale(0.6)"><use href="#cat" color="#FFD166"/></g>
+<text class="sm2" x="108" y="185" text-anchor="middle">本体</text>
+<text class="sm" x="88" y="200">已隐藏</text>
+<text class="sm" x="88" y="219">只管生分身</text>
+<g transform="translate(190,112) scale(0.7)"><use href="#cat" color="#FF8FA3"/></g>
+<g transform="translate(190,196) scale(0.7)"><use href="#cat" color="#4CC9F0"/></g>
+<g transform="translate(190,278) scale(0.7)"><use href="#cat" color="#8AC926"/></g>
+<circle class="dot" cx="258" cy="100" r="7" fill="#FF8FA3" stroke="#2C2417" stroke-width="2.5"/>
+<circle class="dot dot2" cx="258" cy="184" r="7" fill="#4CC9F0" stroke="#2C2417" stroke-width="2.5"/>
+<circle class="dot dot3" cx="258" cy="268" r="7" fill="#8AC926" stroke="#2C2417" stroke-width="2.5"/>
+<text class="sm2" x="274" y="104">颜色特效 50</text>
+<text class="sm2" x="274" y="188">颜色特效 100</text>
+<text class="sm2" x="274" y="272">颜色特效 150</text>
+<text class="sm2" x="190" y="332" text-anchor="middle">三个分身 颜色各不相同、排成一列</text>
+<use href="#hat210" x="392" y="86" fill="#FFD166"/>
+<text class="blk" x="497" y="113">当绿旗被点击</text>
+<use href="#cmd210" x="392" y="128" fill="#FFD166"/>
+<text class="blk" x="497" y="155">克隆 3 个分身（本体听这段）</text>
+<use href="#hat210" x="392" y="182" fill="#FFD166"/>
+<text class="blk" x="497" y="209">当作为克隆体启动时</text>
+<use href="#cmd210" x="392" y="224" fill="#FF8FA3"/>
+<text class="blk" x="497" y="251">将 颜色特效 增加 50</text>
+<use href="#cmd210" x="392" y="266" fill="#4CC9F0"/>
+<text class="blk" x="497" y="293">移到 分身编号对应的位置</text>
+<text class="mid" x="24" y="344">谁戴帽子谁执行：绿旗帽子管本体，克隆帽子管分身</text>
+</svg>

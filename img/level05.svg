@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<style>
+text{font-family:sans-serif}
+.big{font-size:21px;font-weight:bold;fill:#2C2417}
+.mid{font-size:17px;font-weight:bold;fill:#2C2417}
+.sm{font-size:14px;fill:#2C2417}
+.blk{font-size:12.5px;font-weight:bold;fill:#2C2417;text-anchor:middle}
+.b1{animation:bo 3s ease-in-out infinite}
+.b2{animation:bo 3s ease-in-out infinite;animation-delay:1s}
+.b3{animation:bo 3s ease-in-out infinite;animation-delay:2s}
+@keyframes bo{0%,100%{opacity:1}50%{opacity:.55}}
+.gw{opacity:.45}
+</style>
+<defs>
+<g id="cat">
+<path d="M-16 14 q-20 -2 -18 -20" fill="none" stroke="#2C2417" stroke-width="3.5" stroke-linecap="round"/>
+<ellipse cx="-7" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="11" cy="30" rx="8" ry="5.5" fill="currentColor" stroke="#2C2417" stroke-width="3"/>
+<ellipse cx="0" cy="12" rx="23" ry="18" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<circle cx="3" cy="-13" r="17" fill="currentColor" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="-8,-25 -12,-39 1,-31" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<polygon points="9,-29 19,-39 21,-23" fill="currentColor" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<circle cx="1" cy="-15" r="2.8" fill="#2C2417"/>
+<circle cx="12" cy="-15" r="2.8" fill="#2C2417"/>
+<polygon points="5,-8 11,-8 8,-4" fill="#FF8FA3" stroke="#2C2417" stroke-width="2" stroke-linejoin="round"/>
+<path d="M2 -2 q6 5 12 1" fill="none" stroke="#2C2417" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+<path id="hat220" d="M12 0 H208 Q220 0 220 12 V30 Q220 42 208 42 H127 V33 H93 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+<path id="cmd220" d="M12 0 H93 V-9 H127 V0 H208 Q220 0 220 12 V30 Q220 42 208 42 H127 V33 H93 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+</defs>
+<rect width="640" height="360" fill="#F4EDE0"/>
+<text class="big" x="24" y="32">第5关 · 排好队的编号分身</text>
+<text class="sm" x="24" y="54">「仅适用于当前角色」的私有变量：每个分身各拿一份，谁都不抢谁的</text>
+<use href="#hat220" x="36" y="86" fill="#FFD166"/>
+<text class="blk" x="146" y="113">当绿旗被点击</text>
+<use href="#cmd220" x="36" y="128" fill="#8AC926"/>
+<text class="blk" x="146" y="155">将 编号 设为 0（私有变量）</text>
+<rect x="36" y="174" width="220" height="88" rx="12" fill="#FF8FA3" stroke="#2C2417" stroke-width="3.5"/>
+<rect x="56" y="198" width="180" height="48" fill="#F4EDE0"/>
+<text class="blk" x="146" y="191">重复 3 次</text>
+<text class="blk" x="146" y="217">编号 + 1 → 克隆自己</text>
+<text class="blk" x="146" y="239">克隆时把编号复制给分身</text>
+<use href="#hat220" x="36" y="266" fill="#FFD166"/>
+<text class="blk" x="146" y="293">当作为克隆体启动时</text>
+<g class="gw" transform="translate(500,96) scale(0.5)"><use href="#cat" color="#FFD166"/></g>
+<text class="sm" x="500" y="126" text-anchor="middle">本体（已隐藏）</text>
+<rect x="282" y="120" width="96" height="26" rx="8" fill="#FFD166" stroke="#2C2417" stroke-width="3"/>
+<text class="blk" x="330" y="137">按编号排成一排</text>
+<rect class="b1" x="317" y="152" width="96" height="46" rx="12" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="357,198 373,198 365,224" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<text class="blk" x="365" y="181">我是第1个</text>
+<g transform="translate(365,262) scale(0.8)"><use href="#cat" color="#FF8FA3"/></g>
+<rect class="b2" x="417" y="152" width="96" height="46" rx="12" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="457,198 473,198 465,224" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<text class="blk" x="465" y="181">我是第2个</text>
+<g transform="translate(465,262) scale(0.8)"><use href="#cat" color="#4CC9F0"/></g>
+<rect class="b3" x="517" y="152" width="96" height="46" rx="12" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5"/>
+<polygon points="557,198 573,198 565,224" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<text class="blk" x="565" y="181">我是第3个</text>
+<g transform="translate(565,262) scale(0.8)"><use href="#cat" color="#8AC926"/></g>
+<text class="sm" x="305" y="306">编号是私有变量：每个分身各记各的</text>
+<text class="sm" x="305" y="326">分身还能用编号算出自己的站队位置</text>
+<text class="mid" x="24" y="350">一人一份的私有变量，克隆时从本体复制值，分身才不会抢同一个号</text>
+</svg>

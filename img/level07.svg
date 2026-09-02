@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<style>
+text{font-family:sans-serif}
+.big{font-size:21px;font-weight:bold;fill:#2C2417}
+.mid{font-size:17px;font-weight:bold;fill:#2C2417}
+.sm{font-size:14px;fill:#2C2417}
+.sm2{font-size:12px;font-weight:bold;fill:#2C2417}
+.blk{font-size:12.5px;font-weight:bold;fill:#2C2417;text-anchor:middle}
+.flow{stroke:#2C2417;stroke-width:4;stroke-dasharray:8 7;fill:none;animation:fl 1.2s linear infinite}
+@keyframes fl{to{stroke-dashoffset:-30}}
+.puls{animation:pu 2.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pu{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.bo{animation:bo 2.6s ease-in-out infinite}
+@keyframes bo{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.star{animation:st 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes st{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.15)}}
+</style>
+<defs>
+<g id="apple">
+<ellipse cx="0" cy="3" rx="13" ry="13" fill="#FF8FA3" stroke="#2C2417" stroke-width="3"/>
+<path d="M0 -9 V-15" stroke="#2C2417" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="4" cy="-14" rx="6" ry="4" fill="#8AC926" stroke="#2C2417" stroke-width="2.5" transform="rotate(-25 4 -14)"/>
+</g>
+</defs>
+<rect width="640" height="360" fill="#F4EDE0"/>
+<text class="big" x="24" y="32">第7关 · 两关接苹果闯关</text>
+<text class="sm" x="24" y="54">用「关卡」变量记进度：闯过一关就自动进下一关，一关更比一关难</text>
+<rect x="24" y="84" width="206" height="82" rx="10" fill="#FFFFFF" stroke="#8AC926" stroke-width="4"/>
+<text class="mid" x="127" y="110" text-anchor="middle">第1关</text>
+<text class="sm" x="127" y="132" text-anchor="middle">剩余时间 30 秒</text>
+<text class="sm2" x="127" y="152" text-anchor="middle">接住 10 个 → 过关</text>
+<g class="bo"><use href="#apple" transform="translate(56,112) scale(0.6)"/></g>
+<use href="#apple" transform="translate(198,120) scale(0.6)"/>
+<path class="flow" d="M238 118 H296"/>
+<polygon points="292,112 304,118 292,124" fill="#2C2417"/>
+<rect x="300" y="84" width="206" height="82" rx="10" fill="#FFFFFF" stroke="#4CC9F0" stroke-width="4"/>
+<text class="mid" x="403" y="110" text-anchor="middle">第2关</text>
+<text class="sm" x="403" y="132" text-anchor="middle">剩余时间 20 秒</text>
+<text class="sm2" x="403" y="152" text-anchor="middle">接住 15 个 → 再过关</text>
+<use href="#apple" transform="translate(334,110) scale(0.6)"/>
+<g class="bo"><use href="#apple" transform="translate(474,122) scale(0.6)"/></g>
+<circle class="puls" cx="253" cy="208" r="30" fill="#FFD166" stroke="#2C2417" stroke-width="3.5"/>
+<text class="blk" x="253" y="203">难度</text>
+<text class="blk" x="253" y="218">变高</text>
+<path d="M295 205 H330" stroke="#2C2417" stroke-width="3.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<polygon points="326,199 338,205 326,211" fill="#2C2417"/>
+<rect x="24" y="248" width="464" height="76" rx="12" fill="#FF8FA3" stroke="#2C2417" stroke-width="4"/>
+<text class="blk" x="256" y="278">过关后：关卡 +1 → 接住数清零、剩余时间补满</text>
+<text class="blk" x="256" y="302">新一关 目标数变多、时间变短，不会带着旧数据开跑</text>
+<g class="star">
+<path d="M540 292 l5 10 11 2 -8 8 2 11 -10 -5 -10 5 2 -11 -8 -8 11 -2 z" fill="#FFD166" stroke="#2C2417" stroke-width="3"/>
+</g>
+<rect x="524" y="248" width="100" height="76" rx="12" fill="#8AC926" stroke="#2C2417" stroke-width="4"/>
+<text class="blk" x="574" y="278">关卡变 3</text>
+<text class="blk" x="574" y="300">全部通关</text>
+<path d="M488 286 H512" stroke="#2C2417" stroke-width="3.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<polygon points="508,280 520,286 508,292" fill="#2C2417"/>
+<text class="mid" x="24" y="350">关卡加 1 之外还要重置数据：接住数归零、剩余时间补满，新一关才开得干净</text>
+</svg>

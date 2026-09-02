@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<style>
+text{font-family:sans-serif}
+.big{font-size:21px;font-weight:bold;fill:#2C2417}
+.mid{font-size:17px;font-weight:bold;fill:#2C2417}
+.sm{font-size:14px;fill:#2C2417}
+.blk{font-size:13px;font-weight:bold;fill:#2C2417;text-anchor:middle}
+#ghostch{opacity:.45}
+.e1{animation:eg 2.6s ease-in infinite}
+.e2{animation:eg 2.6s ease-in infinite;animation-delay:-1.3s}
+@keyframes eg{0%{transform:translateY(0);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateY(96px);opacity:0}}
+.wink{animation:wk 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes wk{0%,100%{transform:rotate(0)}50%{transform:rotate(14deg)}}
+</style>
+<defs>
+<g id="hen">
+<ellipse cx="-5" cy="4" rx="19" ry="15" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5"/>
+<circle cx="3" cy="-18" r="11" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5"/>
+<path d="M-9 -26 q-4 -11 5 -13 q9 -1 6 11" fill="#FF8FA3" stroke="#2C2417" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="11,-21 23,-16 11,-10" fill="#FFD166" stroke="#2C2417" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="6" cy="-19" r="2.4" fill="#2C2417"/>
+<polygon points="-24,-8 -38,-18 -34,2 -26,6" fill="#FFFFFF" stroke="#2C2417" stroke-width="3.5" stroke-linejoin="round"/>
+<ellipse cx="-8" cy="7" rx="9" ry="7" fill="#FFD166" stroke="#2C2417" stroke-width="3"/>
+<path d="M-10 18 V26 M2 18 V26" stroke="#2C2417" stroke-width="3.5" stroke-linecap="round"/>
+</g>
+<g id="egg">
+<ellipse cx="0" cy="0" rx="12" ry="16" fill="#FFEED9" stroke="#2C2417" stroke-width="3"/>
+<path d="M-5 -6 q3 -3 6 1 M4 3 q3 2 5 0" fill="none" stroke="#FF8FA3" stroke-width="2" stroke-linecap="round"/>
+</g>
+<path id="hat210" d="M12 0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+<path id="cmd210" d="M12 0 H88 V-9 H122 V0 H198 Q210 0 210 12 V30 Q210 42 198 42 H122 V33 H88 V42 H12 Q0 42 0 30 V12 Q0 0 12 0 Z"/>
+</defs>
+<rect width="640" height="360" fill="#F4EDE0"/>
+<text class="big" x="24" y="32">第4关 · 自动下蛋的母鸡</text>
+<text class="sm" x="24" y="54">本体藏起来只负责生蛋，蛋克隆体负责落地消失（先克隆再隐藏）</text>
+<rect x="24" y="74" width="288" height="230" rx="10" fill="#FFFFFF" stroke="#2C2417" stroke-width="4"/>
+<g id="ghostch" transform="translate(150,104)"><use href="#hen" opacity=".55"/></g>
+<text class="sm" x="150" y="148" text-anchor="middle">本体（已隐藏）</text>
+<text class="sm" x="150" y="166" text-anchor="middle">还在幕后继续克隆</text>
+<g transform="translate(110,156)"><g class="e1"><use href="#egg"/></g></g>
+<g transform="translate(215,156)"><g class="e2"><use href="#egg"/></g></g>
+<g class="wink"><use href="#egg" transform="translate(150,162)"/></g>
+<rect x="26" y="248" width="284" height="54" rx="6" fill="#8AC926" stroke="#2C2417" stroke-width="3"/>
+<text class="mid" x="168" y="278" text-anchor="middle">草地：蛋落上来 → 删除</text>
+<rect x="334" y="97" width="72" height="24" rx="8" fill="#FFD166" stroke="#2C2417" stroke-width="3"/>
+<text class="blk" x="370" y="113">本体·母鸡</text>
+<use href="#hat210" x="410" y="88" fill="#FFD166"/>
+<text class="blk" x="515" y="115">当绿旗被点击</text>
+<rect x="410" y="130" width="210" height="62" rx="12" fill="#FF8FA3" stroke="#2C2417" stroke-width="3.5"/>
+<text class="blk" x="515" y="152">重复执行：等待 1 秒</text>
+<text class="blk" x="515" y="178">克隆一个蛋（本体干的事）</text>
+<rect x="334" y="207" width="72" height="24" rx="8" fill="#4CC9F0" stroke="#2C2417" stroke-width="3"/>
+<text class="blk" x="370" y="223">克隆体·蛋</text>
+<use href="#hat210" x="410" y="198" fill="#FFD166"/>
+<text class="blk" x="515" y="225">当作为克隆体启动时</text>
+<use href="#cmd210" x="410" y="244" fill="#8AC926"/>
+<text class="blk" x="515" y="271">从母鸡处往下落，触底删除</text>
+<text class="mid" x="24" y="348">先克隆再隐藏，分身才看得见；本体藏起来照样能继续克隆</text>
+</svg>
